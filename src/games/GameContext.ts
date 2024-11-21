@@ -1,17 +1,17 @@
 import { createContext, Dispatch, SetStateAction } from "react";
 import { Character } from "./character";
-import { Ground } from "./ground";
+import { Floor } from "./floor";
 
 export const GameContext = createContext<{
   characters: Character[];
   setCharacters: Dispatch<SetStateAction<Character[]>>;
 
-  grounds: Ground[];
-  setGrounds: Dispatch<SetStateAction<Ground[]>>;
+  floors: Floor[];
+  setFloors: Dispatch<SetStateAction<Floor[]>>;
 }>({
   characters: [],
   setCharacters: () => {},
 
-  grounds: [],
-  setGrounds: () => {},
+  floors: [],
+  setFloors: () => {},
 });

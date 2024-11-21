@@ -1,42 +1,40 @@
 import { useMemo } from "react";
 import { Vector3 } from "three";
 import { Button } from "./Button";
-import { Ground } from "./Ground";
+import { Floor } from "./Floor";
 import { useOnePressState } from "./useOnePressButton";
 
 export function Stage() {
-  const ground1Position = useMemo(() => new Vector3(0, 0, 0), []);
+  const floor1Position = useMemo(() => new Vector3(0, 0, 0), []);
 
   const button1Position = useMemo(() => new Vector3(0, 0, 3), []);
   const [button1Pressed, setButton1Pressed] = useOnePressState();
 
-  const ground2Position = useMemo(() => new Vector3(0, 0, 10), []);
+  const floor2Position = useMemo(() => new Vector3(0, 3, 0), []);
 
-  const button2Position = useMemo(() => new Vector3(0, 0, 13), []);
+  const button2Position = useMemo(() => new Vector3(0, 0, 3), []);
   const [button2Pressed, setButton2Pressing] = useOnePressState();
 
-  const button3Position = useMemo(() => new Vector3(3, 0, 10), []);
+  const button3Position = useMemo(() => new Vector3(3, 0, 0), []);
   const [button3Pressed, setButton3Pressing] = useOnePressState();
 
-  const button4Position = useMemo(() => new Vector3(-3, 0, 10), []);
+  const button4Position = useMemo(() => new Vector3(-3, 0, 0), []);
   const [button4Pressed, setButton4Pressing] = useOnePressState();
 
   return (
     <>
-      <Ground width={10} depth={10} position={ground1Position} />
-
-      <Button
-        width={1.1}
-        depth={1.1}
-        position={button1Position}
-        pressed={button1Pressed}
-        setPressing={setButton1Pressed}
-      />
+      <Floor width={10} depth={10} position={floor1Position}>
+        <Button
+          width={1.1}
+          depth={1.1}
+          position={button1Position}
+          pressed={button1Pressed}
+          setPressing={setButton1Pressed}
+        />
+      </Floor>
 
       {button1Pressed && (
-        <>
-          <Ground width={10} depth={10} position={ground2Position} />
-
+        <Floor width={10} depth={10} position={floor2Position}>
           <Button
             width={1.1}
             depth={1.1}
@@ -60,7 +58,7 @@ export function Stage() {
             pressed={button4Pressed}
             setPressing={setButton4Pressing}
           />
-        </>
+        </Floor>
       )}
     </>
   );

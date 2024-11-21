@@ -1,17 +1,20 @@
-import { Vector3 } from "three";
+import { RefObject } from "react";
+import { Group, Vector3 } from "three";
 
-export function ButtonBox({ width, depth, position, pressed }: Props) {
+export function ButtonBox({ boxRef, width, depth, position, pressed }: Props) {
   return (
-    <group position={position}>
+    <group ref={boxRef} position={position}>
       <mesh position={[0, pressed ? -0.14 : 0.15, 0]}>
         <boxGeometry args={[width, 0.3, depth]} />
-        <meshStandardMaterial color="#FFF4B7" />
+        <meshStandardMaterial color="#eeeeee" />
       </mesh>
     </group>
   );
 }
 
 interface Props {
+  boxRef: RefObject<Group>;
+
   width: number;
   depth: number;
   position: Vector3;

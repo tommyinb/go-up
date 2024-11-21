@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Vector3 } from "three";
+import { useEffect, useRef } from "react";
+import { Group, Vector3 } from "three";
 import { ButtonBox } from "./ButtonBox";
 import { usePressing } from "./usePressing";
 
@@ -10,12 +10,14 @@ export function Button({
   pressed,
   setPressing,
 }: Props) {
-  const pressing = usePressing(width, depth, position);
+  const boxRef = useRef<Group>(null);
+  const pressing = usePressing(boxRef, width, depth);
 
   useEffect(() => setPressing(pressing), [pressing, setPressing]);
 
   return (
     <ButtonBox
+      boxRef={boxRef}
       width={width}
       depth={depth}
       position={position}

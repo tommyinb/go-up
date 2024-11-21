@@ -3,7 +3,7 @@ import { Vector3 } from "three";
 import { GameContext } from "./GameContext";
 
 export function useGround(width: number, depth: number, position: Vector3) {
-  const { setGrounds } = useContext(GameContext);
+  const { setFloors: setGrounds } = useContext(GameContext);
 
   useEffect(() => {
     const ground = { width, depth, position };

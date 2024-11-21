@@ -1,6 +1,6 @@
 import { Vector3 } from "three";
 
-export interface Ground {
+export interface Floor {
   width: number;
   depth: number;
 

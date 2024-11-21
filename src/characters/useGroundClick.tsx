@@ -1,13 +1,11 @@
 import { useThree } from "@react-three/fiber";
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext } from "react";
 import { Raycaster, Vector2, Vector3 } from "three";
 import { GameContext } from "../games/GameContext";
 import { useClick } from "../scenes/useClick";
 
-export function useTarget() {
-  const [target, setTarget] = useState(new Vector3(0, 0, 0));
-
-  const { grounds } = useContext(GameContext);
+export function useGroundClick(setTarget: (target: Vector3) => void) {
+  const { floors: grounds } = useContext(GameContext);
   const { camera, scene } = useThree();
   useClick(
     useCallback(
@@ -45,9 +43,7 @@ export function useTarget() {
         const target = targets[0];
         setTarget(target);
       },
-      [camera, grounds, scene.children]
+      [camera, grounds, scene.children, setTarget]
     )
   );
-
-  return target;
 }

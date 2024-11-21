@@ -12,7 +12,7 @@ export function Scene({ children }: PropsWithChildren) {
 
   return (
     <Canvas
-      camera={{ position: [8, 12, 15], near: 1, far: 1000 }}
+      camera={{ position: [6, 9, 12], near: 1, far: 1000 }}
       flat
       shadows
       onClick={(event) => clickHandlers.forEach((handler) => handler(event))}

@@ -1,7 +1,8 @@
-import { Vector3 } from "three";
+import { RefObject } from "react";
+import { Group } from "three";
 
 export interface Character {
   id: string;
 
-  position: Vector3;
+  ref: RefObject<Group>;
 }

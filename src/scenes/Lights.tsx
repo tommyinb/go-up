@@ -15,8 +15,8 @@ export function Lights() {
 
       <directionalLight
         ref={directionalLightRef}
-        intensity={5}
-        position={[5, 3, 4]}
+        intensity={4}
+        position={[-4, 3, 4]}
       />
     </>
   );

@@ -1,32 +1,19 @@
-import { useCallback, useContext, useEffect, useMemo } from "react";
-import { Vector3 } from "three";
+import { useContext, useEffect, useId, useMemo, useRef } from "react";
+import { Group } from "three";
 import { GameContext } from "./GameContext";
 
-export function useCharacter(id: string) {
-  const { characters, setCharacters } = useContext(GameContext);
+export function useCharacter() {
+  const id = useId();
+  const ref = useRef<Group>(null);
+  const character = useMemo(() => ({ id, ref }), [id]);
 
-  const defaultCharacter = useMemo(
-    () => ({ id, position: new Vector3() }),
-    [id]
-  );
+  const { setCharacters } = useContext(GameContext);
+  useEffect(() => {
+    setCharacters((characters) => [...characters, character]);
 
-  useEffect(
-    () => setCharacters((characters) => [...characters, defaultCharacter]),
-    [defaultCharacter, id, setCharacters]
-  );
+    return () =>
+      setCharacters((characters) => characters.filter((c) => c !== character));
+  }, [character, setCharacters]);
 
-  const character =
-    characters.find((character) => character.id === id) ?? defaultCharacter;
-
-  const updatePosition = useCallback(
-    (position: Vector3) => {
-      setCharacters((characters) => [
-        ...characters.filter((character) => character.id !== id),
-        { ...character, position },
-      ]);
-    },
-    [character, id, setCharacters]
-  );
-
-  return { character, updatePosition };
+  return character;
 }
