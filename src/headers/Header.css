@@ -1,0 +1,9 @@
+.headers-Header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  display: flex;
+  justify-content: center;
+}

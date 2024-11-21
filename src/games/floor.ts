@@ -1,8 +1,9 @@
-import { Vector3 } from "three";
+import { RefObject } from "react";
+import { Group } from "three";
 
 export interface Floor {
   width: number;
   depth: number;
 
-  position: Vector3;
+  ref: RefObject<Group>;
 }

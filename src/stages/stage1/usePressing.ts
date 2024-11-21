@@ -1,7 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import { RefObject, useContext, useState } from "react";
 import { Group, Vector3 } from "three";
-import { GameContext } from "../games/GameContext";
+import { GameContext } from "../../games/GameContext";
 
 export function usePressing(
   ref: RefObject<Group>,

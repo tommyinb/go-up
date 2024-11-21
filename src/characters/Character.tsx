@@ -38,7 +38,7 @@ export function Character() {
       return;
     }
 
-    const speed = 30;
+    const speed = 50;
     const timeDistance = speed * delta;
 
     const proportion = timeDistance / targetDistance;
@@ -53,11 +53,9 @@ export function Character() {
       {debug && <Sphere args={[0.1, 4, 2]} position={target} />}
 
       {character && (
-        <Box
-          characterRef={character.ref}
-          opacity={debug ? 0.8 : 1}
-          onClick={smash}
-        />
+        <group ref={character.ref}>
+          <Box opacity={debug ? 0.8 : 1} onClick={smash} />
+        </group>
       )}
     </>
   );

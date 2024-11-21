@@ -1,5 +1,6 @@
+import { Vector3 } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
-import { Group, Vector3 } from "three";
+import { Group } from "three";
 import { ButtonBox } from "./ButtonBox";
 import { usePressing } from "./usePressing";
 
