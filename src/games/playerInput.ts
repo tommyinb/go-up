@@ -1,5 +1,5 @@
 import { Vector3 } from "three";
-import { CharacterInputType } from "./characterInputType";
+import { CharacterInputType } from "./playerInputType";
 
 export interface CharacterInput {
   time: number;

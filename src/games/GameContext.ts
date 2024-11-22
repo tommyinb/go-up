@@ -1,13 +1,13 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-import { Character } from "./character";
 import { Floor } from "./floor";
+import { Player } from "./player";
 
 export const GameContext = createContext<{
   roundTime: number;
   setRoundTime: Dispatch<SetStateAction<number>>;
 
-  characters: Character[];
-  setCharacters: Dispatch<SetStateAction<Character[]>>;
+  player: Player;
+  setPlayer: Dispatch<SetStateAction<Player>>;
 
   floors: Floor[];
   setFloors: Dispatch<SetStateAction<Floor[]>>;
@@ -15,8 +15,11 @@ export const GameContext = createContext<{
   roundTime: 0,
   setRoundTime: () => {},
 
-  characters: [],
-  setCharacters: () => {},
+  player: {
+    ref: { current: null },
+    inputs: [],
+  },
+  setPlayer: () => {},
 
   floors: [],
   setFloors: () => {},

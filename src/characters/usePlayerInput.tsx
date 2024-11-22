@@ -1,17 +1,17 @@
 import { useThree } from "@react-three/fiber";
 import { RefObject, useCallback, useContext, useEffect, useState } from "react";
 import { Mesh, Raycaster, Vector2, Vector3 } from "three";
-import { CharacterInput } from "../games/characterInput";
-import { CharacterInputType } from "../games/characterInputType";
 import { GameContext } from "../games/GameContext";
+import { CharacterInput } from "../games/playerInput";
+import { CharacterInputType } from "../games/playerInputType";
 import { useClick } from "../scenes/useClick";
 
-export function usePlayerInput(id: string, meshRef: RefObject<Mesh>) {
+export function usePlayerInput(meshRef: RefObject<Mesh>) {
   const [input, setInput] = useState<Omit<CharacterInput, "time">>();
 
   const { camera, clock } = useThree();
 
-  const { floors: gameFloors, setCharacters } = useContext(GameContext);
+  const { floors: gameFloors, setPlayer } = useContext(GameContext);
 
   useClick(
     useCallback(
@@ -74,23 +74,17 @@ export function usePlayerInput(id: string, meshRef: RefObject<Mesh>) {
 
     const time = clock.getElapsedTime();
 
-    setCharacters((characters) =>
-      characters.map((character) =>
-        character.id === id
-          ? {
-              ...character,
-              inputs: [
-                ...character.inputs,
-                {
-                  time,
-                  ...input,
-                },
-              ],
-            }
-          : character
-      )
-    );
-  }, [clock, id, input, setCharacters]);
+    setPlayer((player) => ({
+      ...player,
+      inputs: [
+        ...player.inputs,
+        {
+          time,
+          ...input,
+        },
+      ],
+    }));
+  }, [clock, input, setPlayer]);
 
   return input;
 }

@@ -1,12 +1,15 @@
-import { PropsWithChildren, useState } from "react";
-import { Character } from "./character";
+import { PropsWithChildren, useRef, useState } from "react";
+import { Group } from "three";
 import { Floor } from "./floor";
 import { GameContext } from "./GameContext";
+import { Player } from "./player";
 
 export function GameProvider({ children }: PropsWithChildren) {
   const [roundTime, setRoundTime] = useState(0);
 
-  const [characters, setCharacters] = useState<Character[]>([]);
+  const playerRef = useRef<Group>(null);
+  const [player, setPlayer] = useState<Player>({ ref: playerRef, inputs: [] });
+
   const [floors, setFloors] = useState<Floor[]>([]);
 
   return (
@@ -14,8 +17,8 @@ export function GameProvider({ children }: PropsWithChildren) {
       value={{
         roundTime,
         setRoundTime,
-        characters,
-        setCharacters,
+        player,
+        setPlayer,
         floors,
         setFloors,
       }}

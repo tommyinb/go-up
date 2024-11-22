@@ -1,7 +1,7 @@
 import { RefObject, useContext, useEffect } from "react";
 import { Group, Vector3 } from "three";
-import { CharacterInput } from "../games/characterInput";
-import { CharacterInputType } from "../games/characterInputType";
+import { CharacterInput } from "../games/playerInput";
+import { CharacterInputType } from "../games/playerInputType";
 import { SceneContext } from "../scenes/SceneContext";
 
 export function usePlayerOutput(

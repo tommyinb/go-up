@@ -1,27 +1,23 @@
 import { useContext, useEffect, useId, useMemo, useRef } from "react";
-import { Group, Mesh } from "three";
+import { Group } from "three";
 import { GameContext } from "../games/GameContext";
-import { Character } from "../games/character";
-import { CharacterType } from "../games/characterType";
+import { Player } from "../games/player";
 
 export function usePlayerCharacter() {
   const id = useId();
 
-  const groupRef = useRef<Group>(null);
-  const meshRef = useRef<Mesh>(null);
+  const ref = useRef<Group>(null);
 
-  const character = useMemo<Character>(
+  const character = useMemo<Player>(
     () => ({
       id,
-      type: CharacterType.Player,
-      groupRef,
-      meshRef,
+      ref,
       inputs: [],
     }),
     [id]
   );
 
-  const { setCharacters } = useContext(GameContext);
+  const { setPlayer: setCharacters } = useContext(GameContext);
   useEffect(() => {
     setCharacters((characters) => [...characters, character]);
 
