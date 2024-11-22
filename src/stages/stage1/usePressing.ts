@@ -10,7 +10,7 @@ export function usePressing(
 ) {
   const [pressing, setPressing] = useState(false);
 
-  const { player } = useContext(GameContext);
+  const { player, computers } = useContext(GameContext);
   useFrame(() => {
     if (!ref.current) {
       return;
@@ -19,13 +19,16 @@ export function usePressing(
     const position = new Vector3();
     ref.current.getWorldPosition(position);
 
-    const pressing =
-      !!player.ref.current &&
-      Math.abs(player.ref.current.position.y - position.y) < 0.1 &&
-      player.ref.current.position.x - 0.5 < position.x + width / 2 &&
-      player.ref.current.position.x + 0.5 > position.x - width / 2 &&
-      player.ref.current.position.z - 0.5 < position.z + depth / 2 &&
-      player.ref.current.position.z + 0.5 > position.z - depth / 2;
+    const pressing = [player, ...computers].some((character) => {
+      return (
+        !!character.ref?.current &&
+        Math.abs(character.ref.current.position.y - position.y) < 0.1 &&
+        character.ref.current.position.x - 0.5 < position.x + width / 2 &&
+        character.ref.current.position.x + 0.5 > position.x - width / 2 &&
+        character.ref.current.position.z - 0.5 < position.z + depth / 2 &&
+        character.ref.current.position.z + 0.5 > position.z - depth / 2
+      );
+    });
 
     setPressing(pressing);
   });

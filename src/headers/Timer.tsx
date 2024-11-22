@@ -3,7 +3,7 @@ import { GameContext } from "../games/GameContext";
 import "./Timer.css";
 
 export function Timer() {
-  const { roundTime } = useContext(GameContext);
+  const { round } = useContext(GameContext);
 
-  return <div className="headers-Timer">{roundTime.toFixed(2)}</div>;
+  return <div className="headers-Timer">{round.time.toFixed(2)}</div>;
 }

@@ -1,10 +1,10 @@
 import { Vector3 } from "three";
-import { CharacterInputType } from "./playerInputType";
+import { PlayerInputType } from "./playerInputType";
 
-export interface CharacterInput {
+export interface PlayerInput {
   time: number;
 
-  type: CharacterInputType;
+  type: PlayerInputType;
 
   target: Vector3;
 }

@@ -1,24 +1,26 @@
 import { Sphere } from "@react-three/drei";
-import { useContext, useRef, useState } from "react";
-import { Mesh, Vector3 } from "three";
+import { useContext, useEffect, useRef, useState } from "react";
+import { Group, Mesh, Vector3 } from "three";
 import { DebugContext } from "../debugs/DebugContext";
 import { GameContext } from "../games/GameContext";
-import { usePlayerInput } from "./usePlayerInput";
-import { usePlayerMove } from "./usePlayerMove";
-import { usePlayerOutput } from "./usePlayerOutput";
+import { useAction } from "./useAction";
+import { useInput } from "./useInput";
+import { useMove } from "./useMove";
 
 export function Player() {
-  const { player } = useContext(GameContext);
+  const groupRef = useRef<Group>(null);
+  const { setPlayer } = useContext(GameContext);
+  useEffect(
+    () => setPlayer((player) => ({ ...player, ref: groupRef })),
+    [setPlayer]
+  );
 
   const meshRef = useRef<Mesh>(null);
-
-  const input = usePlayerInput(meshRef);
+  const input = useInput(meshRef);
 
   const [target, setTarget] = useState(new Vector3(0, 0, 0));
-
-  usePlayerOutput(input, setTarget, player.ref);
-
-  usePlayerMove(player.ref, target);
+  useAction(input, setTarget, groupRef);
+  useMove(groupRef, target);
 
   const { debug } = useContext(DebugContext);
 
@@ -26,7 +28,7 @@ export function Player() {
     <>
       {debug && <Sphere args={[0.1, 4, 2]} position={target} />}
 
-      <group ref={player.ref}>
+      <group ref={groupRef}>
         <mesh ref={meshRef} position={[0, 0.5, 0]}>
           <boxGeometry args={[1, 1, 1]} />
 

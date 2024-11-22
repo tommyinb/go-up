@@ -1,12 +1,10 @@
 import "./App.css";
-import { Player } from "./characters/Player";
 import { DebugProvider } from "./debugs/DebugProvider";
 import { Game } from "./games/Game";
 import { GameProvider } from "./games/GameProvider";
 import { Header } from "./headers/Header";
 import { Scene } from "./scenes/Scene";
 import { SceneProvider } from "./scenes/SceneProvider";
-import { Stage } from "./stages/stage1/Stage";
 
 function App() {
   return (
@@ -15,11 +13,7 @@ function App() {
         <SceneProvider>
           <GameProvider>
             <Scene>
-              <Game>
-                <Stage />
-
-                <Player />
-              </Game>
+              <Game />
             </Scene>
 
             <Header />

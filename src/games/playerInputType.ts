@@ -1,4 +1,4 @@
-export enum CharacterInputType {
+export enum PlayerInputType {
   Move = "move",
   Smash = "smash",
 }
