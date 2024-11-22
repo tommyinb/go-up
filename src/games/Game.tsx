@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { Computer } from "../computers/Computer";
 import { Player } from "../players/Player";
 import { Stage } from "../stages/stage1/Stage";
@@ -31,14 +31,14 @@ export function Game() {
   useRebirth(round.time <= 0);
 
   return (
-    <>
-      <Stage key={`stage-${round.index}`} />
+    <Fragment key={round.index}>
+      <Stage />
 
-      <Player key={`player-${round.index}`} />
+      <Player />
 
       {computers.map(({ id }) => (
         <Computer key={`computer-${id}`} id={id} />
       ))}
-    </>
+    </Fragment>
   );
 }

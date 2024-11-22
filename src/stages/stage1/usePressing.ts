@@ -11,6 +11,7 @@ export function usePressing(
   const [pressing, setPressing] = useState(false);
 
   const { player, computers } = useContext(GameContext);
+
   useFrame(() => {
     if (!ref.current) {
       return;

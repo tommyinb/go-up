@@ -1,13 +1,21 @@
 import { Vector3 } from "@react-three/fiber";
-import { RefObject } from "react";
+import { RefObject, useContext } from "react";
 import { Group } from "three";
+import { FloorContext } from "./FloorContext";
 
 export function ButtonBox({ boxRef, width, depth, position, pressed }: Props) {
+  const { visited } = useContext(FloorContext);
+
   return (
     <group ref={boxRef} position={position}>
       <mesh position={[0, pressed ? 0.005 : 0.15, 0]}>
         <boxGeometry args={[width, pressed ? 0.01 : 0.3, depth]} />
-        <meshStandardMaterial color={pressed ? "#eee" : "#c00"} />
+
+        <meshStandardMaterial
+          color={pressed ? "#eee" : "#c00"}
+          transparent={!visited}
+          opacity={visited ? 1 : 0.6}
+        />
       </mesh>
     </group>
   );
