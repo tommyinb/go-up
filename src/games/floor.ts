@@ -1,9 +1,10 @@
 import { RefObject } from "react";
-import { Group } from "three";
+import { Group, Mesh } from "three";
 
 export interface Floor {
   width: number;
   depth: number;
 
-  ref: RefObject<Group>;
+  groupRef: RefObject<Group>;
+  meshRef: RefObject<Mesh>;
 }

@@ -1,5 +1,5 @@
 import "./App.css";
-import { Character } from "./characters/Character";
+import { Player } from "./characters/Player";
 import { DebugProvider } from "./debugs/DebugProvider";
 import { Game } from "./games/Game";
 import { GameProvider } from "./games/GameProvider";
@@ -18,7 +18,7 @@ function App() {
               <Game>
                 <Stage />
 
-                <Character />
+                <Player />
               </Game>
             </Scene>
 

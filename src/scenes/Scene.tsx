@@ -1,3 +1,4 @@
+import { Stats } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { PropsWithChildren, useContext } from "react";
 import { DebugContext } from "../debugs/DebugContext";
@@ -17,7 +18,13 @@ export function Scene({ children }: PropsWithChildren) {
       flat
       onClick={(event) => clickHandlers.forEach((handler) => handler(event))}
     >
-      {debug && <axesHelper args={[1]} />}
+      {debug && (
+        <>
+          <Stats />
+
+          <axesHelper args={[1]} />
+        </>
+      )}
 
       <Camera />
 
