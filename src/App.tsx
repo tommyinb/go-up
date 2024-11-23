@@ -2,9 +2,11 @@ import "./App.css";
 import { DebugProvider } from "./debugs/DebugProvider";
 import { Game } from "./games/Game";
 import { GameProvider } from "./games/GameProvider";
-import { Header } from "./headers/Header";
+import { Failure } from "./headers/Failure";
+import { Rebirth } from "./headers/Rebirth";
 import { Scene } from "./scenes/Scene";
 import { SceneProvider } from "./scenes/SceneProvider";
+import { Timer } from "./timers/Timer";
 
 function App() {
   return (
@@ -16,7 +18,10 @@ function App() {
               <Game />
             </Scene>
 
-            <Header />
+            <Timer />
+
+            <Rebirth />
+            <Failure />
           </GameProvider>
         </SceneProvider>
       </DebugProvider>

@@ -14,6 +14,8 @@ export function GameProvider({ children }: PropsWithChildren) {
 
   const [computers, setComputers] = useState<Computer[]>([]);
 
+  const [score, setScore] = useState({ level: 0, coin: 0 });
+
   const [floors, setFloors] = useState<Floor[]>([]);
 
   return (
@@ -25,6 +27,8 @@ export function GameProvider({ children }: PropsWithChildren) {
         setPlayer,
         computers,
         setComputers,
+        score,
+        setScore,
         floors,
         setFloors,
       }}

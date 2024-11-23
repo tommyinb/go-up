@@ -1,0 +1,16 @@
+.headers-Timer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  font-size: 30px;
+  color: white;
+  text-align: center;
+  user-select: none;
+  pointer-events: none;
+
+  &:not(.active) {
+    opacity: 0.3;
+  }
+}

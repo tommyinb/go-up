@@ -14,7 +14,7 @@ export function Scene({ children }: PropsWithChildren) {
 
   return (
     <Canvas
-      camera={{ position: [6, 9, 12], near: 1, far: 1000 }}
+      camera={{ position: [3, 9, 8], near: 1, far: 1000 }}
       flat
       onClick={(event) => clickHandlers.forEach((handler) => handler(event))}
     >

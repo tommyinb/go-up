@@ -9,9 +9,9 @@ export function Camera() {
 
   useEffect(() => {
     ref.current?.setLookAt(
-      cameraTarget.x + 6,
-      cameraTarget.y + 9,
-      cameraTarget.z + 12,
+      cameraTarget.x + 3,
+      cameraTarget.y + 12,
+      cameraTarget.z + 8,
       cameraTarget.x,
       cameraTarget.y,
       cameraTarget.z,

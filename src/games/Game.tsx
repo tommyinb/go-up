@@ -3,15 +3,12 @@ import { Computer } from "../computers/Computer";
 import { Player } from "../players/Player";
 import { Stage } from "../stages/stage1/Stage";
 import { GameContext } from "./GameContext";
-import { useReset } from "./useReset";
 import { useTime } from "./useTime";
 
 export function Game() {
   const { round, computers } = useContext(GameContext);
 
   useTime();
-
-  useReset();
 
   return (
     <Fragment key={round.index}>

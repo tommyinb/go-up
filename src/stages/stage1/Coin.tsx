@@ -1,12 +1,20 @@
 import { Vector3 } from "@react-three/fiber";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Group } from "three";
+import { GameContext } from "../../games/GameContext";
 import { FloorContext } from "./FloorContext";
 import { useOnePressed } from "./useOnePressed";
 
 export function Coin({ position }: Props) {
   const ref = useRef<Group>(null);
   const pressed = useOnePressed(ref, 0.3, 0.3);
+
+  const { setScore } = useContext(GameContext);
+  useEffect(() => {
+    if (pressed) {
+      setScore((score) => ({ ...score, coin: score.coin + 1 }));
+    }
+  }, [pressed, setScore]);
 
   const { visiting } = useContext(FloorContext);
 
