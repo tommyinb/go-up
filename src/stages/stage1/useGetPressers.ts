@@ -1,26 +1,27 @@
-import { useFrame } from "@react-three/fiber";
-import { RefObject, useContext, useState } from "react";
+import { RefObject, useCallback, useContext } from "react";
 import { Group, Vector3 } from "three";
 import { GameContext } from "../../games/GameContext";
+import { Computer } from "../../games/computer";
+import { Player } from "../../games/player";
 
-export function usePressing(
+export function useGetPressers(
   ref: RefObject<Group>,
   width: number,
   depth: number
 ) {
-  const [pressing, setPressing] = useState(false);
-
   const { player, computers } = useContext(GameContext);
 
-  useFrame(() => {
+  return useCallback(() => {
     if (!ref.current) {
-      return;
+      return [];
     }
 
     const position = new Vector3();
     ref.current.getWorldPosition(position);
 
-    const pressing = [player, ...computers].some((character) => {
+    const characters: (Player | Computer)[] = [player, ...computers];
+
+    const pressers = characters.filter((character) => {
       return (
         !!character.ref?.current &&
         Math.abs(character.ref.current.position.y - position.y) < 0.1 &&
@@ -31,8 +32,6 @@ export function usePressing(
       );
     });
 
-    setPressing(pressing);
-  });
-
-  return pressing;
+    return pressers.map((presser) => ("id" in presser ? presser.id : 0));
+  }, [computers, depth, player, ref, width]);
 }

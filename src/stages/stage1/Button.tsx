@@ -1,37 +1,32 @@
 import { Vector3 } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { RefObject, useContext } from "react";
 import { Group } from "three";
-import { ButtonBox } from "./ButtonBox";
-import { usePressing } from "./usePressing";
+import { FloorContext } from "./FloorContext";
 
-export function Button({
-  width,
-  depth,
-  position,
-  pressed,
-  setPressing,
-}: Props) {
-  const boxRef = useRef<Group>(null);
-  const pressing = usePressing(boxRef, width, depth);
-
-  useEffect(() => setPressing(pressing), [pressing, setPressing]);
+export function Button({ boxRef, width, depth, position, pressed }: Props) {
+  const { visiting } = useContext(FloorContext);
 
   return (
-    <ButtonBox
-      boxRef={boxRef}
-      width={width}
-      depth={depth}
-      position={position}
-      pressed={pressed}
-    />
+    <group ref={boxRef} position={position}>
+      <mesh position={[0, pressed ? 0.005 : 0.15, 0]}>
+        <boxGeometry args={[width, pressed ? 0.01 : 0.3, depth]} />
+
+        <meshStandardMaterial
+          color={pressed ? "#eee" : "#c00"}
+          transparent={!visiting}
+          opacity={visiting ? 1 : 0.6}
+        />
+      </mesh>
+    </group>
   );
 }
 
 interface Props {
+  boxRef: RefObject<Group>;
+
   width: number;
   depth: number;
   position: Vector3;
 
   pressed: boolean;
-  setPressing: (pressing: boolean) => void;
 }

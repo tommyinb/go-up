@@ -1,27 +1,26 @@
 import { Vector3 } from "@react-three/fiber";
-import { useCallback, useState } from "react";
-import {} from "three";
+import { useEffect, useRef } from "react";
+import { Group } from "three";
 import { Button } from "./Button";
+import { useOnePressed } from "./useOnePressed";
 
 export function OnePressButton({ width, depth, position, onPress }: Props) {
-  const [pressed, setPressed] = useState(false);
+  const ref = useRef<Group>(null);
+  const pressed = useOnePressed(ref, width, depth);
+
+  useEffect(() => {
+    if (pressed) {
+      onPress();
+    }
+  }, [onPress, pressed]);
 
   return (
     <Button
+      boxRef={ref}
       width={width}
       depth={depth}
       position={position}
       pressed={pressed}
-      setPressing={useCallback(
-        (pressing) => {
-          if (pressing) {
-            setPressed(true);
-
-            onPress();
-          }
-        },
-        [onPress]
-      )}
     />
   );
 }

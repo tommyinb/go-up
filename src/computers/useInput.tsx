@@ -10,10 +10,6 @@ export function useInput(id: number) {
     [computers, id]
   );
 
-  useEffect(() => {
-    console.log("computer", computer?.id, computer?.inputs);
-  }, []);
-
   const [output, setOutput] = useState<PlayerInput>();
 
   useEffect(() => {

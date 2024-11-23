@@ -1,19 +1,12 @@
 import { Vector3 } from "@react-three/fiber";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import { Group } from "three";
 import { FloorContext } from "./FloorContext";
-import { usePressing } from "./usePressing";
+import { useOnePressed } from "./useOnePressed";
 
 export function Coin({ position }: Props) {
-  const [pressed, setPressed] = useState(false);
-
   const ref = useRef<Group>(null);
-  const pressing = usePressing(ref, 0.3, 0.3);
-  useEffect(() => {
-    if (pressing) {
-      setPressed(true);
-    }
-  }, [pressing]);
+  const pressed = useOnePressed(ref, 0.3, 0.3);
 
   const { visiting } = useContext(FloorContext);
 
