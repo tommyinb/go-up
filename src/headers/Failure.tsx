@@ -51,7 +51,11 @@ export function Failure() {
               time: config.time,
             });
 
-            setScore({ level: 0, coin: 0 });
+            setScore({
+              level: 0,
+              coin: 0,
+              prize: 0,
+            });
           }}
         >
           Retry

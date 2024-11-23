@@ -25,7 +25,9 @@ export function Stage() {
     <>
       <Floor1 index={0} setLevel={setLevel} />
 
-      {score.level >= 1 && <Floor2 index={1} setLevel={setLevel} />}
+      {score.level >= 1 && (
+        <Floor2 index={1} active={completed6} setLevel={setLevel} />
+      )}
 
       {score.level >= 2 && <Floor3 index={2} setLevel={setLevel} />}
 

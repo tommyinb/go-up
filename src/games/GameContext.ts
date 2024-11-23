@@ -30,7 +30,7 @@ export const GameContext = createContext<{
   computers: [],
   setComputers: () => {},
 
-  score: { level: 0, coin: 0 },
+  score: { level: 0, coin: 0, prize: 0 },
   setScore: () => {},
 
   floors: [],

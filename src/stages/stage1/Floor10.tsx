@@ -1,11 +1,16 @@
-import { useCallback } from "react";
+import { Coin } from "./Coin";
 import { Floor } from "./Floor";
 import { Prize } from "./Prize";
 
 export function Floor10({ index }: Props) {
   return (
     <Floor index={index} width={10} depth={10}>
-      <Prize position={[0, 0, 0]} complete={useCallback(() => {}, [])} />
+      <Coin position={[-3, 0, 0]} />
+      <Coin position={[3, 0, 0]} />
+      <Coin position={[0, 0, -3]} />
+      <Coin position={[0, 0, 3]} />
+
+      <Prize position={[0, 0, 0]} />
     </Floor>
   );
 }

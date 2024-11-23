@@ -4,4 +4,5 @@ export const config = {
 
   level: 10,
   coin: 30,
+  prize: 1,
 };
