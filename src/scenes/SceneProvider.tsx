@@ -5,6 +5,8 @@ import { SceneContext } from "./SceneContext";
 export function SceneProvider({ children }: PropsWithChildren) {
   const [cameraTarget, setCameraTarget] = useState(new Vector3());
 
+  const [cameraShake, setCameraShake] = useState(0);
+
   const [clickHandlers, setClickHandlers] = useState<
     MouseEventHandler<HTMLDivElement>[]
   >([]);
@@ -14,6 +16,8 @@ export function SceneProvider({ children }: PropsWithChildren) {
       value={{
         cameraTarget,
         setCameraTarget,
+        cameraShake,
+        setCameraShake,
         clickHandlers,
         setClickHandlers,
       }}

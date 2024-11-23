@@ -30,7 +30,7 @@ export function Floor9({ index, setLevel }: Props) {
             width={1.1}
             depth={1.1}
             position={[-3, 0, -3]}
-            count={30}
+            count={15}
             onComplete={addCount}
           />
 
@@ -38,7 +38,7 @@ export function Floor9({ index, setLevel }: Props) {
             width={1.1}
             depth={1.1}
             position={[0, 0, -3]}
-            count={30}
+            count={15}
             onComplete={addCount}
           />
 
@@ -46,7 +46,7 @@ export function Floor9({ index, setLevel }: Props) {
             width={1.1}
             depth={1.1}
             position={[3, 0, -3]}
-            count={30}
+            count={15}
             onComplete={addCount}
           />
 
@@ -54,7 +54,7 @@ export function Floor9({ index, setLevel }: Props) {
             width={1.1}
             depth={1.1}
             position={[-3, 0, 0]}
-            count={30}
+            count={15}
             onComplete={addCount}
           />
 
@@ -62,7 +62,7 @@ export function Floor9({ index, setLevel }: Props) {
             width={1.1}
             depth={1.1}
             position={[3, 0, 0]}
-            count={30}
+            count={15}
             onComplete={addCount}
           />
 
@@ -70,7 +70,7 @@ export function Floor9({ index, setLevel }: Props) {
             width={1.1}
             depth={1.1}
             position={[-3, 0, 3]}
-            count={30}
+            count={15}
             onComplete={addCount}
           />
 
@@ -78,7 +78,7 @@ export function Floor9({ index, setLevel }: Props) {
             width={1.1}
             depth={1.1}
             position={[0, 0, 3]}
-            count={30}
+            count={15}
             onComplete={addCount}
           />
 
@@ -86,7 +86,7 @@ export function Floor9({ index, setLevel }: Props) {
             width={1.1}
             depth={1.1}
             position={[3, 0, 3]}
-            count={30}
+            count={15}
             onComplete={addCount}
           />
         </>
