@@ -20,7 +20,7 @@ export function Prize({ position, complete }: Props) {
     }
   }, [complete, pressed]);
 
-  const { visited } = useContext(FloorContext);
+  const { visiting } = useContext(FloorContext);
 
   return (
     <group ref={ref} position={position}>
@@ -30,8 +30,8 @@ export function Prize({ position, complete }: Props) {
 
           <meshStandardMaterial
             color="#0ff"
-            transparent={!visited}
-            opacity={visited ? 1 : 0.6}
+            transparent={!visiting}
+            opacity={visiting ? 1 : 0.6}
           />
         </mesh>
       )}

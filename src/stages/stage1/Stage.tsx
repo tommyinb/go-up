@@ -1,79 +1,45 @@
-import { useCallback, useState } from "react";
-import { Level1 } from "./Level1";
-import { Level10 } from "./Level10";
-import { Level2 } from "./Level2";
-import { Level3 } from "./Level3";
-import { Level4 } from "./Level4";
-import { Level5 } from "./Level5";
-import { Level6 } from "./Level6";
-import { Level7 } from "./Level7";
-import { Level8 } from "./Level8";
-import { Level9 } from "./Level9";
+import { useState } from "react";
+import { Floor1 } from "./Floor1";
+import { Floor10 } from "./Floor10";
+import { Floor2 } from "./Floor2";
+import { Floor3 } from "./Floor3";
+import { Floor4 } from "./Floor4";
+import { Floor5 } from "./Floor5";
+import { Floor6 } from "./Floor6";
+import { Floor7 } from "./Floor7";
+import { Floor8 } from "./Floor8";
+import { Floor9 } from "./Floor9";
 
 export function Stage() {
-  const [level, setLevel] = useState(1);
-  const nextLevel = useCallback(() => setLevel((level) => level + 1), []);
+  const [level, setLevel] = useState(0);
 
-  const [level6Completed, setLevel6Completed] = useState(false);
-  const level6Complete = useCallback(() => setLevel6Completed(true), []);
+  const [completed6, setCompleted6] = useState(false);
 
   return (
     <>
-      <Level1 next={nextLevel} />
+      <Floor1 index={0} setLevel={setLevel} />
 
-      {level >= 2 && (
-        <group position={[0, 3, 0]}>
-          <Level2 next={nextLevel} />
-        </group>
-      )}
+      {level >= 1 && <Floor2 index={1} setLevel={setLevel} />}
 
-      {level >= 3 && (
-        <group position={[0, 6, 0]}>
-          <Level3 next={nextLevel} />
-        </group>
-      )}
+      {level >= 2 && <Floor3 index={2} setLevel={setLevel} />}
 
-      {level >= 4 && (
-        <group position={[0, 9, 0]}>
-          <Level4 next={nextLevel} />
-        </group>
-      )}
+      {level >= 3 && <Floor4 index={3} setLevel={setLevel} />}
+
+      {level >= 4 && <Floor5 index={4} setLevel={setLevel} />}
 
       {level >= 5 && (
-        <group position={[0, 12, 0]}>
-          <Level5 next={nextLevel} />
-        </group>
+        <Floor6 index={5} setCompleted={setCompleted6} setLevel={setLevel} />
       )}
 
       {level >= 6 && (
-        <group position={[0, 15, 0]}>
-          <Level6 next={nextLevel} complete={level6Complete} />
-        </group>
+        <Floor7 index={6} active={completed6} setLevel={setLevel} />
       )}
 
-      {level >= 7 && (
-        <group position={[0, 18, 0]}>
-          <Level7 active={level6Completed} next={nextLevel} />
-        </group>
-      )}
+      {level >= 7 && <Floor8 index={7} setLevel={setLevel} />}
 
-      {level >= 8 && (
-        <group position={[0, 21, 0]}>
-          <Level8 next={nextLevel} />
-        </group>
-      )}
+      {level >= 8 && <Floor9 index={8} setLevel={setLevel} />}
 
-      {level >= 9 && (
-        <group position={[0, 24, 0]}>
-          <Level9 next={nextLevel} />
-        </group>
-      )}
-
-      {level >= 10 && (
-        <group position={[0, 27, 0]}>
-          <Level10 complete={nextLevel} />
-        </group>
-      )}
+      {level >= 9 && <Floor10 index={9} />}
     </>
   );
 }

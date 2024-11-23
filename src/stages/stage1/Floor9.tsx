@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { CountDownButton } from "./CountDownButton";
 import { Floor } from "./Floor";
 
-export function Level9({ next }: Props) {
+export function Floor9({ index, setLevel }: Props) {
   const [active, setActive] = useState(false);
 
   const [count, setCount] = useState(0);
@@ -10,12 +10,12 @@ export function Level9({ next }: Props) {
 
   useEffect(() => {
     if (count >= 8) {
-      next();
+      setLevel(index + 1);
     }
-  }, [count, next]);
+  }, [count, index, setLevel]);
 
   return (
-    <Floor width={10} depth={10}>
+    <Floor index={index} width={10} depth={10}>
       <CountDownButton
         width={1.1}
         depth={1.1}
@@ -96,5 +96,7 @@ export function Level9({ next }: Props) {
 }
 
 interface Props {
-  next: () => void;
+  index: number;
+
+  setLevel: (index: number) => void;
 }

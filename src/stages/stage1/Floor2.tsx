@@ -3,18 +3,18 @@ import { Coin } from "./Coin";
 import { Floor } from "./Floor";
 import { OnePressButton } from "./OnePressButton";
 
-export function Level2({ next }: Props) {
+export function Floor2({ index, setLevel }: Props) {
   const [pressed1, setPressed1] = useState(false);
   const [pressed2, setPressed2] = useState(false);
 
   useEffect(() => {
     if (pressed1 && pressed2) {
-      next();
+      setLevel(index + 1);
     }
-  }, [pressed1, pressed2, next]);
+  }, [index, pressed1, pressed2, setLevel]);
 
   return (
-    <Floor width={10} depth={10}>
+    <Floor index={index} width={10} depth={10}>
       <OnePressButton
         width={1.1}
         depth={1.1}
@@ -35,5 +35,7 @@ export function Level2({ next }: Props) {
 }
 
 interface Props {
-  next: () => void;
+  index: number;
+
+  setLevel: (index: number) => void;
 }

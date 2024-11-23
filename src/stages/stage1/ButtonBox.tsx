@@ -4,7 +4,7 @@ import { Group } from "three";
 import { FloorContext } from "./FloorContext";
 
 export function ButtonBox({ boxRef, width, depth, position, pressed }: Props) {
-  const { visited } = useContext(FloorContext);
+  const { visiting } = useContext(FloorContext);
 
   return (
     <group ref={boxRef} position={position}>
@@ -13,8 +13,8 @@ export function ButtonBox({ boxRef, width, depth, position, pressed }: Props) {
 
         <meshStandardMaterial
           color={pressed ? "#eee" : "#c00"}
-          transparent={!visited}
-          opacity={visited ? 1 : 0.6}
+          transparent={!visiting}
+          opacity={visiting ? 1 : 0.6}
         />
       </mesh>
     </group>

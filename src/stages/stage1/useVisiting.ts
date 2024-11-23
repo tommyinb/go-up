@@ -18,7 +18,8 @@ export function useVisiting(ref: RefObject<Group>) {
 
     const visiting =
       !!player.ref?.current &&
-      Math.abs(player.ref.current.position.y - position.y) < 0.1;
+      player.ref.current.position.y >= position.y - 0.1 &&
+      player.ref.current.position.y <= position.y + 2.9;
 
     setVisiting(visiting);
   });

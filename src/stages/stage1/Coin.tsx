@@ -15,7 +15,7 @@ export function Coin({ position }: Props) {
     }
   }, [pressing]);
 
-  const { visited } = useContext(FloorContext);
+  const { visiting } = useContext(FloorContext);
 
   return (
     <group ref={ref} position={position}>
@@ -25,8 +25,8 @@ export function Coin({ position }: Props) {
 
           <meshStandardMaterial
             color="#cc0"
-            transparent={!visited}
-            opacity={visited ? 1 : 0.6}
+            transparent={!visiting}
+            opacity={visiting ? 1 : 0.6}
           />
         </mesh>
       )}

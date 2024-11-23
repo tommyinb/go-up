@@ -1,15 +1,16 @@
+import { useCallback } from "react";
 import { Coin } from "./Coin";
 import { Floor } from "./Floor";
 import { OnePressButton } from "./OnePressButton";
 
-export function Level5({ next }: Props) {
+export function Floor5({ index, setLevel }: Props) {
   return (
-    <Floor width={10} depth={10}>
+    <Floor index={index} width={10} depth={10}>
       <OnePressButton
         width={1.1}
         depth={1.1}
         position={[0, 0, 0]}
-        onPress={next}
+        onPress={useCallback(() => setLevel(index + 1), [index, setLevel])}
       />
 
       {Array.from({ length: 3 }).flatMap((_, i) =>
@@ -27,5 +28,7 @@ export function Level5({ next }: Props) {
 }
 
 interface Props {
-  next: () => void;
+  index: number;
+
+  setLevel: (index: number) => void;
 }

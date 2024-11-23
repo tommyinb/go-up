@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 export const FloorContext = createContext<{
-  visited: boolean;
+  visiting: boolean;
 }>({
-  visited: false,
+  visiting: false,
 });

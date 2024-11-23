@@ -7,7 +7,7 @@ import { Player } from "./player";
 import { Round } from "./round";
 
 export function GameProvider({ children }: PropsWithChildren) {
-  const [round, setRound] = useState<Round>({ index: 0, time: 5 });
+  const [round, setRound] = useState<Round>({ index: 0, time: 30 });
 
   const playerRef = useRef<Group>(null);
   const [player, setPlayer] = useState<Player>({ ref: playerRef, inputs: [] });

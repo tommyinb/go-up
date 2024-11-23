@@ -19,7 +19,7 @@ export function Game() {
               }
             : {
                 index: round.index + 1,
-                time: 5,
+                time: 30,
               }
         ),
       20

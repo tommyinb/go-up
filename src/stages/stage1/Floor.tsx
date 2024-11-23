@@ -4,7 +4,6 @@ import {
   useEffect,
   useMemo,
   useRef,
-  useState,
 } from "react";
 import { Group, Mesh } from "three";
 import { Floor as GameFloor } from "../../games/floor";
@@ -12,7 +11,7 @@ import { GameContext } from "../../games/GameContext";
 import { FloorContext } from "./FloorContext";
 import { useVisiting } from "./useVisiting";
 
-export function Floor({ width, depth, children }: Props) {
+export function Floor({ index, width, depth, children }: Props) {
   const groupRef = useRef<Group>(null);
   const meshRef = useRef<Mesh>(null);
 
@@ -28,27 +27,21 @@ export function Floor({ width, depth, children }: Props) {
     return () => setFloors((floors) => floors.filter((f) => f !== floor));
   }, [floor, setFloors]);
 
-  const [visited, setVisited] = useState(false);
   const visiting = useVisiting(groupRef);
-  useEffect(() => {
-    if (visiting) {
-      setVisited(true);
-    }
-  }, [visiting]);
 
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} position={[0, index * 3, 0]}>
       <mesh ref={meshRef} position={[0, -0.05, 0]}>
         <boxGeometry args={[width, 0.1, depth]} />
 
         <meshStandardMaterial
           color="#fff"
-          transparent={!visited}
-          opacity={visited ? 1 : 0.6}
+          transparent={!visiting}
+          opacity={visiting ? 1 : 0.6}
         />
       </mesh>
 
-      <FloorContext.Provider value={{ visited }}>
+      <FloorContext.Provider value={{ visiting }}>
         {children}
       </FloorContext.Provider>
     </group>
@@ -56,6 +49,8 @@ export function Floor({ width, depth, children }: Props) {
 }
 
 interface Props extends PropsWithChildren {
+  index: number;
+
   width: number;
   depth: number;
 }

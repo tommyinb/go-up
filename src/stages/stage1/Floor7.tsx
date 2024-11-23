@@ -1,15 +1,16 @@
+import { useCallback } from "react";
 import { Coin } from "./Coin";
 import { Floor } from "./Floor";
 import { OnePressButton } from "./OnePressButton";
 
-export function Level7({ active, next }: Props) {
+export function Floor7({ index, active, setLevel }: Props) {
   return (
-    <Floor width={10} depth={10}>
+    <Floor index={index} width={10} depth={10}>
       <OnePressButton
         width={1.1}
         depth={1.1}
         position={[0, 0, 0]}
-        onPress={next}
+        onPress={useCallback(() => setLevel(index + 1), [index, setLevel])}
       />
 
       {active &&
@@ -28,6 +29,9 @@ export function Level7({ active, next }: Props) {
 }
 
 interface Props {
+  index: number;
+
   active: boolean;
-  next: () => void;
+
+  setLevel: (index: number) => void;
 }
