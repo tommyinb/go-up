@@ -1,17 +1,18 @@
 import { useCallback, useState } from "react";
 import { Coin } from "./Coin";
-import { CountDownButton } from "./CountDownButton";
+import { CountButton } from "./CountButton";
 import { Floor } from "./Floor";
-import { OnePressButton } from "./OnePressButton";
+import { PressedButton } from "./PressedButton";
+import { useNextLevel } from "./useNextLevel";
 
-export function Floor8({ index, setLevel }: Props) {
+export function Floor8({ index }: Props) {
   const [completed, setCompleted] = useState(false);
 
-  const nextLevel = useCallback(() => setLevel(index + 1), [index, setLevel]);
+  const nextLevel = useNextLevel(index);
 
   return (
     <Floor index={index} width={10} depth={10}>
-      <CountDownButton
+      <CountButton
         width={1.1}
         depth={1.1}
         position={[0, 0, 0]}
@@ -21,7 +22,7 @@ export function Floor8({ index, setLevel }: Props) {
 
       {completed && (
         <>
-          <OnePressButton
+          <PressedButton
             width={1.1}
             depth={1.1}
             position={[0, 0, 3]}
@@ -46,6 +47,4 @@ export function Floor8({ index, setLevel }: Props) {
 
 interface Props {
   index: number;
-
-  setLevel: (index: number) => void;
 }

@@ -8,9 +8,12 @@
   color: white;
   text-align: center;
   user-select: none;
-  pointer-events: none;
 
   &:not(.active) {
+    display: none;
+  }
+
+  &.disabled {
     opacity: 0.3;
   }
 }

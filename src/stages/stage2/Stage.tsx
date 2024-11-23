@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useStage } from "../../headers/useStage";
+import { Floor10 } from "../stage1/Floor10";
 import { Floor1 } from "./Floor1";
-import { Floor10 } from "./Floor10";
 import { Floor2 } from "./Floor2";
 import { Floor3 } from "./Floor3";
 import { Floor4 } from "./Floor4";
@@ -15,23 +15,28 @@ export function Stage() {
   const stage = useStage();
   const level = stage?.score.level ?? 0;
 
-  const [completed6, setCompleted6] = useState(false);
+  const [active4, setActive4] = useState(false);
+  const [answer7, setAnswer7] = useState("");
 
   return (
     <>
       <Floor1 index={0} />
 
-      {level >= 1 && <Floor2 index={1} active={completed6} />}
+      {level >= 1 && <Floor2 index={1} />}
 
-      {level >= 2 && <Floor3 index={2} />}
+      {level >= 2 && <Floor3 index={2} active={active4} />}
 
-      {level >= 3 && <Floor4 index={3} />}
+      {level >= 3 && (
+        <Floor4 index={3} active={active4} setActive={setActive4} />
+      )}
 
       {level >= 4 && <Floor5 index={4} />}
 
-      {level >= 5 && <Floor6 index={5} setCompleted={setCompleted6} />}
+      {level >= 5 && <Floor6 index={5} answer7={answer7} />}
 
-      {level >= 6 && <Floor7 index={6} active={completed6} />}
+      {level >= 6 && (
+        <Floor7 index={6} answer={answer7} setAnswer={setAnswer7} />
+      )}
 
       {level >= 7 && <Floor8 index={7} />}
 

@@ -3,7 +3,7 @@ import { RefObject, useState } from "react";
 import { Group } from "three";
 import { useGetPressers } from "./useGetPressers";
 
-export function useOnePressed(
+export function usePressed(
   ref: RefObject<Group>,
   width: number,
   depth: number

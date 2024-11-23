@@ -1,39 +1,54 @@
 import { useContext } from "react";
 import { Vector3 } from "three";
 import { GameContext } from "../games/GameContext";
+import { MenuContext } from "../menus/MenuContext";
+import { Mode } from "../menus/mode";
 import { SceneContext } from "../scenes/SceneContext";
 import "./Rebirth.css";
-import { config } from "./config";
+import { RebirthExit } from "./RebirthExit";
+import { useSetScore } from "./useSetScore";
+import { useStage } from "./useStage";
 
 export function Rebirth() {
-  const { round, setRound, player, setPlayer, setComputers, score, setScore } =
+  const { mode } = useContext(MenuContext);
+
+  const { round, setRound, player, setPlayer, setComputers } =
     useContext(GameContext);
 
+  const stage = useStage();
+
   const { setCameraTarget } = useContext(SceneContext);
+
+  const setScore = useSetScore();
 
   return (
     <div
       className={`headers-Rebirth ${
-        round.index < config.round - 1 && round.time <= 0 ? "active" : ""
+        mode === Mode.Game &&
+        stage &&
+        round.index < stage.config.round - 1 &&
+        round.time <= 0
+          ? "active"
+          : ""
       }`}
     >
       <div className="content">
         <div className="round">
-          Round {round.index + 1} / {config.round}
+          Round {round.index + 1} / {stage?.config.round}
         </div>
 
         <div className="score">
           <div className="level">
-            Level {score.level + 1} / {config.level}
+            Level {(stage?.score.level ?? 0) + 1} / {stage?.config.level}
           </div>
 
           <div className="coin">
-            Coin {score.coin} / {config.coin}
+            Coin {stage?.score.coin} / {stage?.config.coin}
           </div>
         </div>
 
         <div
-          className="button"
+          className="again"
           onClick={() => {
             if (player.inputs.length > 0) {
               setComputers((computers) => [
@@ -57,7 +72,7 @@ export function Rebirth() {
 
             setRound((round) => ({
               index: round.index + 1,
-              time: config.time,
+              time: stage?.config.time ?? 0,
             }));
 
             setScore({
@@ -69,6 +84,8 @@ export function Rebirth() {
         >
           Again
         </div>
+
+        <RebirthExit className="exit" />
       </div>
     </div>
   );

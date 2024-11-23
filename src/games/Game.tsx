@@ -1,17 +1,20 @@
 import { Fragment, useContext } from "react";
 import { Computer } from "../computers/Computer";
+import { MenuContext } from "../menus/MenuContext";
 import { Player } from "../players/Player";
-import { Stage } from "../stages/stage1/Stage";
+import { Stage } from "../stages/Stage";
 import { GameContext } from "./GameContext";
 import { useTime } from "./useTime";
 
 export function Game() {
+  const { run } = useContext(MenuContext);
+
   const { round, computers } = useContext(GameContext);
 
   useTime();
 
   return (
-    <Fragment key={round.index}>
+    <Fragment key={`${run}-${round.index}`}>
       <Stage />
 
       <Player />

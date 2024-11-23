@@ -3,7 +3,6 @@ import { Computer } from "./computer";
 import { Floor } from "./floor";
 import { Player } from "./player";
 import { Round } from "./round";
-import { Score } from "./score";
 
 export const GameContext = createContext<{
   round: Round;
@@ -14,9 +13,6 @@ export const GameContext = createContext<{
 
   computers: Computer[];
   setComputers: Dispatch<SetStateAction<Computer[]>>;
-
-  score: Score;
-  setScore: Dispatch<SetStateAction<Score>>;
 
   floors: Floor[];
   setFloors: Dispatch<SetStateAction<Floor[]>>;
@@ -29,9 +25,6 @@ export const GameContext = createContext<{
 
   computers: [],
   setComputers: () => {},
-
-  score: { level: 0, coin: 0, prize: 0 },
-  setScore: () => {},
 
   floors: [],
   setFloors: () => {},

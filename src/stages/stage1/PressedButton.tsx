@@ -1,27 +1,31 @@
 import { Vector3 } from "@react-three/fiber";
 import { useContext, useEffect, useRef } from "react";
 import { Group } from "three";
-import { CoinBox } from "./CoinBox";
+import { useShakeCamera } from "../../scenes/useShakeCamera";
+import { ButtonBox } from "./ButtonBox";
 import { FloorContext } from "./FloorContext";
 import { usePressed } from "./usePressed";
-import { useSetScore } from "./useSetScore";
 
-export function Coin({ position }: Props) {
+export function PressedButton({ width, depth, position, onPress }: Props) {
   const ref = useRef<Group>(null);
-  const pressed = usePressed(ref, 0.3, 0.3);
+  const pressed = usePressed(ref, width, depth);
 
-  const setScore = useSetScore();
+  const shakeCamera = useShakeCamera();
   useEffect(() => {
     if (pressed) {
-      setScore((score) => ({ ...score, coin: score.coin + 1 }));
+      onPress();
+
+      shakeCamera();
     }
-  }, [pressed, setScore]);
+  }, [onPress, pressed, shakeCamera]);
 
   const { visiting } = useContext(FloorContext);
 
   return (
-    <CoinBox
+    <ButtonBox
       boxRef={ref}
+      width={width}
+      depth={depth}
       position={position}
       opacity={visiting ? 1 : 0.6}
       pressed={pressed}
@@ -30,5 +34,9 @@ export function Coin({ position }: Props) {
 }
 
 interface Props {
+  width: number;
+  depth: number;
   position: Vector3;
+
+  onPress: () => void;
 }

@@ -1,21 +1,23 @@
 import { useCallback, useEffect, useState } from "react";
 import { Coin } from "./Coin";
 import { Floor } from "./Floor";
-import { OnePressButton } from "./OnePressButton";
+import { PressedButton } from "./PressedButton";
+import { useNextLevel } from "./useNextLevel";
 
-export function Floor2({ index, active, setLevel }: Props) {
+export function Floor2({ index, active }: Props) {
   const [pressed1, setPressed1] = useState(false);
   const [pressed2, setPressed2] = useState(false);
 
+  const nextLevel = useNextLevel(index);
   useEffect(() => {
     if (pressed1 && pressed2) {
-      setLevel(index + 1);
+      nextLevel();
     }
-  }, [index, pressed1, pressed2, setLevel]);
+  }, [nextLevel, pressed1, pressed2]);
 
   return (
     <Floor index={index} width={10} depth={10}>
-      <OnePressButton
+      <PressedButton
         width={1.1}
         depth={1.1}
         position={[0, 0, -3]}
@@ -24,7 +26,7 @@ export function Floor2({ index, active, setLevel }: Props) {
 
       <Coin position={[3, 0, 0]} />
 
-      <OnePressButton
+      <PressedButton
         width={1.1}
         depth={1.1}
         position={[0, 0, 3]}
@@ -40,6 +42,4 @@ interface Props {
   index: number;
 
   active: boolean;
-
-  setLevel: (index: number) => void;
 }

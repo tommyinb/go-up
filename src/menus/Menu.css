@@ -1,0 +1,36 @@
+.menus-Menu {
+  position: absolute;
+  inset: 0;
+  background-color: #000000cc;
+  backdrop-filter: blur(2px);
+  padding: 10px 20px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .scroll {
+    width: 500px;
+    max-height: 100vh;
+    padding: 20px 30px;
+    overflow-y: auto;
+
+    > .title {
+      font-size: 30px;
+      color: white;
+      text-align: center;
+    }
+
+    .content {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  &:not(.active) {
+    user-select: none;
+    pointer-events: none;
+    opacity: 0;
+  }
+}

@@ -5,7 +5,6 @@ import { Floor } from "./floor";
 import { GameContext } from "./GameContext";
 import { Player } from "./player";
 import { Round } from "./round";
-import { Score } from "./score";
 
 export function GameProvider({ children }: PropsWithChildren) {
   const [round, setRound] = useState<Round>({ index: 0, time: 30 });
@@ -14,8 +13,6 @@ export function GameProvider({ children }: PropsWithChildren) {
   const [player, setPlayer] = useState<Player>({ ref: playerRef, inputs: [] });
 
   const [computers, setComputers] = useState<Computer[]>([]);
-
-  const [score, setScore] = useState<Score>({ level: 0, coin: 0, prize: 0 });
 
   const [floors, setFloors] = useState<Floor[]>([]);
 
@@ -28,8 +25,6 @@ export function GameProvider({ children }: PropsWithChildren) {
         setPlayer,
         computers,
         setComputers,
-        score,
-        setScore,
         floors,
         setFloors,
       }}

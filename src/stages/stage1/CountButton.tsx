@@ -1,11 +1,12 @@
 import { useFrame, Vector3 } from "@react-three/fiber";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Group } from "three";
-import { SceneContext } from "../../scenes/SceneContext";
-import { Button } from "./Button";
+import { useShakeCamera } from "../../scenes/useShakeCamera";
+import { ButtonBox } from "./ButtonBox";
+import { FloorContext } from "./FloorContext";
 import { useGetPressers } from "./useGetPressers";
 
-export function CountDownButton({
+export function CountButton({
   width,
   depth,
   position,
@@ -32,12 +33,12 @@ export function CountDownButton({
 
   const [pressedCount, setPressedDown] = useState(0);
 
-  const { setCameraShake } = useContext(SceneContext);
+  const shakeCamera = useShakeCamera();
   useEffect(() => {
     if (pressedCount > 0 && pressedCount <= targetCount) {
-      setCameraShake((shake) => shake + 1);
+      shakeCamera();
     }
-  }, [pressedCount, setCameraShake, targetCount]);
+  }, [pressedCount, shakeCamera, targetCount]);
 
   const completed = pressedCount >= targetCount;
   useEffect(() => {
@@ -46,12 +47,15 @@ export function CountDownButton({
     }
   }, [completed, onComplete]);
 
+  const { visiting } = useContext(FloorContext);
+
   return (
-    <Button
+    <ButtonBox
       boxRef={buttonRef}
       width={width}
       depth={depth}
       position={position}
+      opacity={visiting ? 1 : 0.6}
       pressed={pressing || pressedCount >= targetCount}
     />
   );

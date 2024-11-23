@@ -1,22 +1,24 @@
 import { useCallback, useEffect, useState } from "react";
-import { CountDownButton } from "./CountDownButton";
+import { CountButton } from "./CountButton";
 import { Floor } from "./Floor";
+import { useNextLevel } from "./useNextLevel";
 
-export function Floor9({ index, setLevel }: Props) {
+export function Floor9({ index }: Props) {
   const [active, setActive] = useState(false);
 
   const [count, setCount] = useState(0);
   const addCount = useCallback(() => setCount((count) => count + 1), []);
 
+  const nextLevel = useNextLevel(index);
   useEffect(() => {
     if (count >= 8) {
-      setLevel(index + 1);
+      nextLevel();
     }
-  }, [count, index, setLevel]);
+  }, [count, nextLevel]);
 
   return (
     <Floor index={index} width={10} depth={10}>
-      <CountDownButton
+      <CountButton
         width={1.1}
         depth={1.1}
         position={[0, 0, 0]}
@@ -26,7 +28,7 @@ export function Floor9({ index, setLevel }: Props) {
 
       {active && (
         <>
-          <CountDownButton
+          <CountButton
             width={1.1}
             depth={1.1}
             position={[-3, 0, -3]}
@@ -34,7 +36,7 @@ export function Floor9({ index, setLevel }: Props) {
             onComplete={addCount}
           />
 
-          <CountDownButton
+          <CountButton
             width={1.1}
             depth={1.1}
             position={[0, 0, -3]}
@@ -42,7 +44,7 @@ export function Floor9({ index, setLevel }: Props) {
             onComplete={addCount}
           />
 
-          <CountDownButton
+          <CountButton
             width={1.1}
             depth={1.1}
             position={[3, 0, -3]}
@@ -50,7 +52,7 @@ export function Floor9({ index, setLevel }: Props) {
             onComplete={addCount}
           />
 
-          <CountDownButton
+          <CountButton
             width={1.1}
             depth={1.1}
             position={[-3, 0, 0]}
@@ -58,7 +60,7 @@ export function Floor9({ index, setLevel }: Props) {
             onComplete={addCount}
           />
 
-          <CountDownButton
+          <CountButton
             width={1.1}
             depth={1.1}
             position={[3, 0, 0]}
@@ -66,7 +68,7 @@ export function Floor9({ index, setLevel }: Props) {
             onComplete={addCount}
           />
 
-          <CountDownButton
+          <CountButton
             width={1.1}
             depth={1.1}
             position={[-3, 0, 3]}
@@ -74,7 +76,7 @@ export function Floor9({ index, setLevel }: Props) {
             onComplete={addCount}
           />
 
-          <CountDownButton
+          <CountButton
             width={1.1}
             depth={1.1}
             position={[0, 0, 3]}
@@ -82,7 +84,7 @@ export function Floor9({ index, setLevel }: Props) {
             onComplete={addCount}
           />
 
-          <CountDownButton
+          <CountButton
             width={1.1}
             depth={1.1}
             position={[3, 0, 3]}
@@ -97,6 +99,4 @@ export function Floor9({ index, setLevel }: Props) {
 
 interface Props {
   index: number;
-
-  setLevel: (index: number) => void;
 }

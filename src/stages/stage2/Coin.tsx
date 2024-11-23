@@ -1,12 +1,12 @@
 import { Vector3 } from "@react-three/fiber";
 import { useContext, useEffect, useRef } from "react";
 import { Group } from "three";
-import { CoinBox } from "./CoinBox";
-import { FloorContext } from "./FloorContext";
-import { usePressed } from "./usePressed";
-import { useSetScore } from "./useSetScore";
+import { CoinBox } from "../stage1/CoinBox";
+import { FloorContext } from "../stage1/FloorContext";
+import { usePressed } from "../stage1/usePressed";
+import { useSetScore } from "../stage1/useSetScore";
 
-export function Coin({ position }: Props) {
+export function Coin({ position, onPress }: Props) {
   const ref = useRef<Group>(null);
   const pressed = usePressed(ref, 0.3, 0.3);
 
@@ -14,8 +14,10 @@ export function Coin({ position }: Props) {
   useEffect(() => {
     if (pressed) {
       setScore((score) => ({ ...score, coin: score.coin + 1 }));
+
+      onPress();
     }
-  }, [pressed, setScore]);
+  }, [onPress, pressed, setScore]);
 
   const { visiting } = useContext(FloorContext);
 
@@ -31,4 +33,6 @@ export function Coin({ position }: Props) {
 
 interface Props {
   position: Vector3;
+
+  onPress: () => void;
 }

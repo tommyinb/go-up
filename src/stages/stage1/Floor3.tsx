@@ -1,39 +1,40 @@
 import { useCallback, useState } from "react";
 import { Floor } from "./Floor";
-import { OnePressButton } from "./OnePressButton";
+import { PressedButton } from "./PressedButton";
+import { useNextLevel } from "./useNextLevel";
 
-export function Floor3({ index, setLevel }: Props) {
+export function Floor3({ index }: Props) {
   const [pressed1, setPressed1] = useState(false);
   const [pressed2, setPressed2] = useState(false);
   const [pressed3, setPressed3] = useState(false);
   const [pressed4, setPressed4] = useState(false);
 
-  const nextLevel = useCallback(() => setLevel(index + 1), [index, setLevel]);
+  const nextLevel = useNextLevel(index);
 
   return (
     <Floor index={index} width={10} depth={10}>
-      <OnePressButton
+      <PressedButton
         width={1.1}
         depth={1.1}
         position={[0, 0, -3]}
         onPress={useCallback(() => setPressed1(true), [])}
       />
 
-      <OnePressButton
+      <PressedButton
         width={1.1}
         depth={1.1}
         position={[0, 0, 3]}
         onPress={useCallback(() => setPressed2(true), [])}
       />
 
-      <OnePressButton
+      <PressedButton
         width={1.1}
         depth={1.1}
         position={[-3, 0, 0]}
         onPress={useCallback(() => setPressed3(true), [])}
       />
 
-      <OnePressButton
+      <PressedButton
         width={1.1}
         depth={1.1}
         position={[3, 0, 0]}
@@ -41,7 +42,7 @@ export function Floor3({ index, setLevel }: Props) {
       />
 
       {pressed1 && pressed2 && pressed3 && pressed4 && (
-        <OnePressButton
+        <PressedButton
           width={1.1}
           depth={1.1}
           position={[0, 0, 0]}
@@ -54,6 +55,4 @@ export function Floor3({ index, setLevel }: Props) {
 
 interface Props {
   index: number;
-
-  setLevel: (index: number) => void;
 }
