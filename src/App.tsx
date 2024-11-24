@@ -5,11 +5,11 @@ import { Rebirth } from "./forms/Rebirth";
 import { Success } from "./forms/Success";
 import { Game } from "./games/Game";
 import { GameProvider } from "./games/GameProvider";
+import { Timer } from "./headers/Timer";
 import { Menu } from "./menus/Menu";
 import { MenuProvider } from "./menus/MenuProvider";
 import { Scene } from "./scenes/Scene";
 import { SceneProvider } from "./scenes/SceneProvider";
-import { Timer } from "./timers/Timer";
 
 function App() {
   return (

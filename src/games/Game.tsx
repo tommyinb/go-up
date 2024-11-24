@@ -1,9 +1,9 @@
 import { Fragment, useContext } from "react";
 import { Computer } from "../computers/Computer";
+import { useTime } from "../headers/useTime";
 import { MenuContext } from "../menus/MenuContext";
 import { Player } from "../players/Player";
 import { Stage } from "../stages/Stage";
-import { useTime } from "../timers/useTime";
 import { GameContext } from "./GameContext";
 
 export function Game() {

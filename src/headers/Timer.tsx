@@ -17,7 +17,7 @@ export function Timer() {
 
   return (
     <div
-      className={`forms-Timer ${mode === Mode.Game ? "active" : ""} ${
+      className={`headers-Timer ${mode === Mode.Game ? "active" : ""} ${
         round.time <= 0 ? "disabled" : ""
       }`}
       onDoubleClick={() => setDebug(!debug)}
