@@ -4,13 +4,6 @@
   top: calc(50% - 200px);
   width: 300px;
   height: 280px;
-  border: 2px solid #ddd;
-  background-color: #000000cc;
-  backdrop-filter: blur(3px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
   .content {
     user-select: none;
@@ -55,16 +48,5 @@
       color: white;
       cursor: pointer;
     }
-  }
-
-  &.active {
-    transition: 0.1s cubic-bezier(0.63, 0.07, 0.58, 2.02);
-  }
-
-  &:not(.active) {
-    scale: 0.8;
-    opacity: 0;
-    user-select: none;
-    pointer-events: none;
   }
 }

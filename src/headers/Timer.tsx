@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import { DebugContext } from "../debugs/DebugContext";
 import { GameContext } from "../games/GameContext";
 import { MenuContext } from "../menus/MenuContext";
 import { Mode } from "../menus/mode";
@@ -39,5 +40,11 @@ export function Timer() {
     return () => clearInterval(timer);
   }, [mode, round.index, setRound]);
 
-  return <div className="headers-Timer">{round.time.toFixed(2)}</div>;
+  const { debug, setDebug } = useContext(DebugContext);
+
+  return (
+    <div className="headers-Timer" onDoubleClick={() => setDebug(!debug)}>
+      {round.time.toFixed(2)}
+    </div>
+  );
 }
