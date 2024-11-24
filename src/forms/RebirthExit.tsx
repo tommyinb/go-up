@@ -34,7 +34,7 @@ export function RebirthExit({ className }: Props) {
 
   return (
     <div
-      className={`headers-RebirthExit ${className}`}
+      className={`forms-RebirthExit ${className}`}
       onPointerDown={() => {
         setActive(true);
         setProgress(0);

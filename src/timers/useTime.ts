@@ -16,12 +16,12 @@ export function useTime() {
       return;
     }
 
-    const lastTime = { time: clock.getElapsedTime() };
+    const lastTime = { time: performance.now() };
 
     const timer = setInterval(() => {
       setRound((round) => {
-        const currentTime = clock.getElapsedTime();
-        const elapsed = currentTime - lastTime.time;
+        const currentTime = performance.now();
+        const elapsed = (currentTime - lastTime.time) / 1000;
 
         lastTime.time = currentTime;
 

@@ -1,10 +1,10 @@
 import "./App.css";
 import { DebugProvider } from "./debugs/DebugProvider";
+import { Failure } from "./forms/Failure";
+import { Rebirth } from "./forms/Rebirth";
+import { Success } from "./forms/Success";
 import { Game } from "./games/Game";
 import { GameProvider } from "./games/GameProvider";
-import { Failure } from "./headers/Failure";
-import { Rebirth } from "./headers/Rebirth";
-import { Success } from "./headers/Success";
 import { Menu } from "./menus/Menu";
 import { MenuProvider } from "./menus/MenuProvider";
 import { Scene } from "./scenes/Scene";

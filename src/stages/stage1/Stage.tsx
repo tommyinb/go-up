@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useStage } from "../../headers/useStage";
+import { useStage } from "../../forms/useStage";
 import { Floor1 } from "./Floor1";
 import { Floor10 } from "./Floor10";
 import { Floor2 } from "./Floor2";

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { DebugContext } from "../debugs/DebugContext";
+import { useStage } from "../forms/useStage";
 import { GameContext } from "../games/GameContext";
-import { useStage } from "../headers/useStage";
 import { MenuContext } from "../menus/MenuContext";
 import { Mode } from "../menus/mode";
 import "./Timer.css";
@@ -17,7 +17,7 @@ export function Timer() {
 
   return (
     <div
-      className={`headers-Timer ${mode === Mode.Game ? "active" : ""} ${
+      className={`forms-Timer ${mode === Mode.Game ? "active" : ""} ${
         round.time <= 0 ? "disabled" : ""
       }`}
       onDoubleClick={() => setDebug(!debug)}

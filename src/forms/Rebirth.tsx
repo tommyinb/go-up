@@ -23,7 +23,7 @@ export function Rebirth() {
 
   return (
     <div
-      className={`headers-Rebirth ${
+      className={`forms-Rebirth ${
         mode === Mode.Game &&
         stage &&
         round.index < stage.config.round - 1 &&
