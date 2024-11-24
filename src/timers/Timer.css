@@ -4,9 +4,8 @@
   left: 0;
   right: 0;
   padding: 10px;
-  font-size: 30px;
-  color: white;
   text-align: center;
+  color: white;
   user-select: none;
 
   &:not(.active) {
@@ -15,5 +14,13 @@
 
   &.disabled {
     opacity: 0.3;
+  }
+
+  .name {
+    font-size: 12px;
+  }
+
+  .time {
+    font-size: 30px;
   }
 }

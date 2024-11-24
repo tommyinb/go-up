@@ -7,7 +7,7 @@ import "./MenuItem.css";
 import { Mode } from "./mode";
 import { StageConfig } from "./stageConfig";
 
-export function MenuItem({ index, title, config }: Props) {
+export function MenuItem({ index, config }: Props) {
   const { setMode, setRun, stages, setStages, selected, setSelected } =
     useContext(MenuContext);
 
@@ -62,7 +62,7 @@ export function MenuItem({ index, title, config }: Props) {
         );
       }}
     >
-      <div className="title">{title}</div>
+      <div className="name">{stage?.config.name}</div>
 
       <div className="score">
         <div>
@@ -79,6 +79,5 @@ export function MenuItem({ index, title, config }: Props) {
 
 interface Props {
   index: number;
-  title: string;
   config: StageConfig;
 }

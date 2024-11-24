@@ -3,8 +3,8 @@ import { Computer } from "../computers/Computer";
 import { MenuContext } from "../menus/MenuContext";
 import { Player } from "../players/Player";
 import { Stage } from "../stages/Stage";
+import { useTime } from "../timers/useTime";
 import { GameContext } from "./GameContext";
-import { useTime } from "./useTime";
 
 export function Game() {
   const { run } = useContext(MenuContext);
