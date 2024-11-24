@@ -5,7 +5,7 @@ import { Rebirth } from "./forms/Rebirth";
 import { Success } from "./forms/Success";
 import { Game } from "./games/Game";
 import { GameProvider } from "./games/GameProvider";
-import { Timer } from "./headers/Timer";
+import { Header } from "./headers/Header";
 import { Menu } from "./menus/Menu";
 import { MenuProvider } from "./menus/MenuProvider";
 import { Scene } from "./scenes/Scene";
@@ -24,7 +24,7 @@ function App() {
 
               <Menu />
 
-              <Timer />
+              <Header />
 
               <Rebirth />
               <Failure />

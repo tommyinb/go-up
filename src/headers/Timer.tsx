@@ -1,6 +1,4 @@
-import { useContext } from "react";
-import { DebugContext } from "../debugs/DebugContext";
-import { useStage } from "../forms/useStage";
+import { useContext, useEffect } from "react";
 import { GameContext } from "../games/GameContext";
 import { MenuContext } from "../menus/MenuContext";
 import { Mode } from "../menus/mode";
@@ -9,22 +7,37 @@ import "./Timer.css";
 export function Timer() {
   const { mode } = useContext(MenuContext);
 
-  const { round } = useContext(GameContext);
+  const { round, setRound } = useContext(GameContext);
 
-  const stage = useStage();
+  useEffect(() => {
+    if (mode !== Mode.Game) {
+      return;
+    }
 
-  const { debug, setDebug } = useContext(DebugContext);
+    const from = {
+      roundValue: round.index * 0,
+      clockTime: performance.now(),
+    };
 
-  return (
-    <div
-      className={`headers-Timer ${mode === Mode.Game ? "active" : ""} ${
-        round.time <= 0 ? "disabled" : ""
-      }`}
-      onDoubleClick={() => setDebug(!debug)}
-    >
-      <div className="name">{stage?.config.name}</div>
+    setRound((round) => {
+      from.roundValue = round.time;
+      return round;
+    });
 
-      <div className="time">{round.time.toFixed(2)}</div>
-    </div>
-  );
+    const timer = setInterval(() => {
+      setRound((round) => {
+        const currentTime = performance.now();
+        const elapsed = currentTime - from.clockTime;
+
+        return {
+          ...round,
+          time: Math.max(from.roundValue - elapsed / 1000, 0),
+        };
+      });
+    }, 10);
+
+    return () => clearInterval(timer);
+  }, [mode, round.index, setRound]);
+
+  return <div className="headers-Timer">{round.time.toFixed(2)}</div>;
 }

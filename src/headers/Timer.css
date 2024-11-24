@@ -1,26 +1,3 @@
 .headers-Timer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
-  text-align: center;
-  color: white;
-  user-select: none;
-
-  &:not(.active) {
-    display: none;
-  }
-
-  &.disabled {
-    opacity: 0.3;
-  }
-
-  .name {
-    font-size: 12px;
-  }
-
-  .time {
-    font-size: 30px;
-  }
+  font-size: 30px;
 }
