@@ -3,13 +3,15 @@ import { useContext } from "react";
 import { ButtonBox } from "../stage1/ButtonBox";
 import { FloorContext } from "../stage1/FloorContext";
 
-export function FakeButton({ width, depth, position }: Props) {
+export function FakeButton({ position }: Props) {
   const { visiting } = useContext(FloorContext);
+
+  const size = 1.1;
 
   return (
     <ButtonBox
-      width={width}
-      depth={depth}
+      width={size}
+      depth={size}
       position={position}
       opacity={visiting ? 1 : 0.6}
       pressed={false}
@@ -18,7 +20,5 @@ export function FakeButton({ width, depth, position }: Props) {
 }
 
 interface Props {
-  width: number;
-  depth: number;
   position: Vector3;
 }

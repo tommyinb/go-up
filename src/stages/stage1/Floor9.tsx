@@ -19,8 +19,6 @@ export function Floor9({ index }: Props) {
   return (
     <Floor index={index} width={10} depth={10}>
       <CountButton
-        width={1.1}
-        depth={1.1}
         position={[0, 0, 0]}
         count={30}
         onComplete={useCallback(() => setActive(true), [])}
@@ -29,68 +27,24 @@ export function Floor9({ index }: Props) {
       {active && (
         <>
           <CountButton
-            width={1.1}
-            depth={1.1}
             position={[-3, 0, -3]}
             count={15}
             onComplete={addCount}
           />
 
-          <CountButton
-            width={1.1}
-            depth={1.1}
-            position={[0, 0, -3]}
-            count={15}
-            onComplete={addCount}
-          />
+          <CountButton position={[0, 0, -3]} count={15} onComplete={addCount} />
 
-          <CountButton
-            width={1.1}
-            depth={1.1}
-            position={[3, 0, -3]}
-            count={15}
-            onComplete={addCount}
-          />
+          <CountButton position={[3, 0, -3]} count={15} onComplete={addCount} />
 
-          <CountButton
-            width={1.1}
-            depth={1.1}
-            position={[-3, 0, 0]}
-            count={15}
-            onComplete={addCount}
-          />
+          <CountButton position={[-3, 0, 0]} count={15} onComplete={addCount} />
 
-          <CountButton
-            width={1.1}
-            depth={1.1}
-            position={[3, 0, 0]}
-            count={15}
-            onComplete={addCount}
-          />
+          <CountButton position={[3, 0, 0]} count={15} onComplete={addCount} />
 
-          <CountButton
-            width={1.1}
-            depth={1.1}
-            position={[-3, 0, 3]}
-            count={15}
-            onComplete={addCount}
-          />
+          <CountButton position={[-3, 0, 3]} count={15} onComplete={addCount} />
 
-          <CountButton
-            width={1.1}
-            depth={1.1}
-            position={[0, 0, 3]}
-            count={15}
-            onComplete={addCount}
-          />
+          <CountButton position={[0, 0, 3]} count={15} onComplete={addCount} />
 
-          <CountButton
-            width={1.1}
-            depth={1.1}
-            position={[3, 0, 3]}
-            count={15}
-            onComplete={addCount}
-          />
+          <CountButton position={[3, 0, 3]} count={15} onComplete={addCount} />
         </>
       )}
     </Floor>

@@ -7,8 +7,6 @@ import { FloorContext } from "./FloorContext";
 import { useGetPressers } from "./useGetPressers";
 
 export function CountButton({
-  width,
-  depth,
   position,
   count: targetCount,
   onComplete,
@@ -16,7 +14,8 @@ export function CountButton({
   const [pressing, setPressing] = useState(false);
 
   const buttonRef = useRef<Group>(null);
-  const getPressers = useGetPressers(buttonRef, width, depth);
+  const size = 1.1;
+  const getPressers = useGetPressers(buttonRef, size, size);
   const pressersRef = useRef(new Set<number>());
   useFrame(() => {
     const currentPressers = getPressers();
@@ -52,8 +51,8 @@ export function CountButton({
   return (
     <ButtonBox
       boxRef={buttonRef}
-      width={width}
-      depth={depth}
+      width={size}
+      depth={size}
       position={position}
       opacity={visiting ? 1 : 0.6}
       pressed={pressing || pressedCount >= targetCount}
@@ -62,8 +61,6 @@ export function CountButton({
 }
 
 interface Props {
-  width: number;
-  depth: number;
   position: Vector3;
 
   count: number;

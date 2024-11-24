@@ -76,67 +76,41 @@ export function Floor9({ index }: Props) {
     <Floor index={index} width={10} depth={10}>
       <group ref={refA} position={[-2, 0, -2]}>
         {((active && presserA === 0) || answer === "A") && (
-          <PressedButton
-            width={1.1}
-            depth={1.1}
-            position={[0, 0, 0]}
-            onPress={answerA}
-          />
+          <PressedButton position={[0, 0, 0]} onPress={answerA} />
         )}
 
-        {presserA === undefined && (
-          <FakeButton width={1.1} depth={1.1} position={[0, 0, 0]} />
-        )}
+        {presserA === undefined && <FakeButton position={[0, 0, 0]} />}
       </group>
 
       <group ref={refB} position={[-2, 0, 2]}>
         {((active && presserB === 0) || answer === "B") && (
-          <PressedButton
-            width={1.1}
-            depth={1.1}
-            position={[0, 0, 0]}
-            onPress={nextB}
-          />
+          <PressedButton position={[0, 0, 0]} onPress={nextB} />
         )}
 
         {presserA !== undefined && presserB === undefined && (
-          <FakeButton width={1.1} depth={1.1} position={[0, 0, 0]} />
+          <FakeButton position={[0, 0, 0]} />
         )}
       </group>
 
       <group ref={refC} position={[2, 0, -2]}>
         {((active && presserC === 0) || answer === "C") && (
-          <PressedButton
-            width={1.1}
-            depth={1.1}
-            position={[0, 0, 0]}
-            onPress={nextC}
-          />
+          <PressedButton position={[0, 0, 0]} onPress={nextC} />
         )}
 
         {presserA !== undefined &&
           presserB !== undefined &&
-          presserC === undefined && (
-            <FakeButton width={1.1} depth={1.1} position={[0, 0, 0]} />
-          )}
+          presserC === undefined && <FakeButton position={[0, 0, 0]} />}
       </group>
 
       <group ref={refD} position={[2, 0, 2]}>
         {((active && presserD === 0) || answer === "D") && (
-          <PressedButton
-            width={1.1}
-            depth={1.1}
-            position={[0, 0, 0]}
-            onPress={nextD}
-          />
+          <PressedButton position={[0, 0, 0]} onPress={nextD} />
         )}
 
         {presserA !== undefined &&
           presserB !== undefined &&
           presserC !== undefined &&
-          presserD === undefined && (
-            <FakeButton width={1.1} depth={1.1} position={[0, 0, 0]} />
-          )}
+          presserD === undefined && <FakeButton position={[0, 0, 0]} />}
       </group>
     </Floor>
   );

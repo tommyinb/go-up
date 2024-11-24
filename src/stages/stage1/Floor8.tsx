@@ -13,8 +13,6 @@ export function Floor8({ index }: Props) {
   return (
     <Floor index={index} width={10} depth={10}>
       <CountButton
-        width={1.1}
-        depth={1.1}
         position={[0, 0, 0]}
         count={30}
         onComplete={useCallback(() => setCompleted(true), [])}
@@ -22,12 +20,7 @@ export function Floor8({ index }: Props) {
 
       {completed && (
         <>
-          <PressedButton
-            width={1.1}
-            depth={1.1}
-            position={[0, 0, 3]}
-            onPress={nextLevel}
-          />
+          <PressedButton position={[0, 0, 3]} onPress={nextLevel} />
 
           {Array.from({ length: 3 }).flatMap((_, i) =>
             Array.from({ length: 3 }).map((_, j) =>

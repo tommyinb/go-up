@@ -11,8 +11,6 @@ export function Floor4({ index, active, setActive }: Props) {
   return (
     <Floor index={index} width={10} depth={10}>
       <CountButton
-        width={1.1}
-        depth={1.1}
         position={[0, 0, -3]}
         count={10}
         onComplete={useCallback(() => setActive(true), [setActive])}
@@ -20,12 +18,7 @@ export function Floor4({ index, active, setActive }: Props) {
 
       {active && <Coin position={[0, 0, 0]} />}
 
-      <NearButton
-        width={1.1}
-        depth={1.1}
-        position={[4, 0, 4]}
-        onPress={nextLevel}
-      />
+      <NearButton position={[4, 0, 4]} onPress={nextLevel} />
     </Floor>
   );
 }

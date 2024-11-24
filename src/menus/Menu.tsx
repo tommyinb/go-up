@@ -1,6 +1,8 @@
 import { useContext } from "react";
-import { config as stage1 } from "../stages/stage1/config";
-import { config as stage2 } from "../stages/stage2/config";
+import { config as config1 } from "../stages/stage1/config";
+import { config as config2 } from "../stages/stage2/config";
+import { config as config3 } from "../stages/stage3/config";
+import { config as config4 } from "../stages/stage4/config";
 import "./Menu.css";
 import { MenuContext } from "./MenuContext";
 import { MenuItem } from "./MenuItem";
@@ -15,8 +17,9 @@ export function Menu() {
         <div className="title">Solo Playground</div>
 
         <div className="content">
-          <MenuItem index={0} config={stage1} />
-          <MenuItem index={1} config={stage2} />
+          {[config1, config2, config3, config4].map((config, index) => (
+            <MenuItem key={index} index={index} config={config} />
+          ))}
         </div>
       </div>
     </div>

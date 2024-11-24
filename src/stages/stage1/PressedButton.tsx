@@ -6,9 +6,10 @@ import { ButtonBox } from "./ButtonBox";
 import { FloorContext } from "./FloorContext";
 import { usePressed } from "./usePressed";
 
-export function PressedButton({ width, depth, position, onPress }: Props) {
+export function PressedButton({ position, onPress }: Props) {
   const ref = useRef<Group>(null);
-  const pressed = usePressed(ref, width, depth);
+  const size = 1.1;
+  const pressed = usePressed(ref, size, size);
 
   const shakeCamera = useShakeCamera();
   useEffect(() => {
@@ -24,8 +25,8 @@ export function PressedButton({ width, depth, position, onPress }: Props) {
   return (
     <ButtonBox
       boxRef={ref}
-      width={width}
-      depth={depth}
+      width={size}
+      depth={size}
       position={position}
       opacity={visiting ? 1 : 0.6}
       pressed={pressed}
@@ -34,8 +35,6 @@ export function PressedButton({ width, depth, position, onPress }: Props) {
 }
 
 interface Props {
-  width: number;
-  depth: number;
   position: Vector3;
 
   onPress: () => void;

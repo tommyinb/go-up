@@ -10,8 +10,6 @@ export function Floor7({ index, answer, setAnswer }: Props) {
   return (
     <Floor index={index} width={10} depth={10}>
       <PressedButton
-        width={1.1}
-        depth={1.1}
         position={[-3, 0, -3]}
         onPress={useCallback(
           () => setAnswer((answer) => answer + "A"),
@@ -20,8 +18,6 @@ export function Floor7({ index, answer, setAnswer }: Props) {
       />
 
       <PressedButton
-        width={1.1}
-        depth={1.1}
         position={[-3, 0, 3]}
         onPress={useCallback(
           () => setAnswer((answer) => answer + "B"),
@@ -30,8 +26,6 @@ export function Floor7({ index, answer, setAnswer }: Props) {
       />
 
       <PressedButton
-        width={1.1}
-        depth={1.1}
         position={[3, 0, -3]}
         onPress={useCallback(
           () => setAnswer((answer) => answer + "C"),
@@ -40,8 +34,6 @@ export function Floor7({ index, answer, setAnswer }: Props) {
       />
 
       <PressedButton
-        width={1.1}
-        depth={1.1}
         position={[3, 0, 3]}
         onPress={useCallback(
           () => setAnswer((answer) => answer + "D"),
@@ -50,12 +42,7 @@ export function Floor7({ index, answer, setAnswer }: Props) {
       />
 
       {answer.length >= 4 && (
-        <PressedButton
-          width={1.1}
-          depth={1.1}
-          position={[0, 0, 0]}
-          onPress={nextLevel}
-        />
+        <PressedButton position={[0, 0, 0]} onPress={nextLevel} />
       )}
 
       {answer.includes("AB") && (

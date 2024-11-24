@@ -14,8 +14,6 @@ export function Floor8({ index }: Props) {
   return (
     <Floor index={index} width={10} depth={10}>
       <PressedButton
-        width={1.1}
-        depth={1.1}
         position={[0, 0, 0]}
         onPress={useCallback(() => {
           nextLevel();
@@ -24,33 +22,13 @@ export function Floor8({ index }: Props) {
         }, [addCount, nextLevel])}
       />
 
-      <NearButton
-        width={1.1}
-        depth={1.1}
-        position={[-6, 0, -3]}
-        onPress={addCount}
-      />
+      <NearButton position={[-6, 0, -3]} onPress={addCount} />
 
-      <NearButton
-        width={1.1}
-        depth={1.1}
-        position={[6, 0, 3]}
-        onPress={addCount}
-      />
+      <NearButton position={[6, 0, 3]} onPress={addCount} />
 
-      <NearButton
-        width={1.1}
-        depth={1.1}
-        position={[-3, 0, -6]}
-        onPress={addCount}
-      />
+      <NearButton position={[-3, 0, -6]} onPress={addCount} />
 
-      <NearButton
-        width={1.1}
-        depth={1.1}
-        position={[3, 0, 6]}
-        onPress={addCount}
-      />
+      <NearButton position={[3, 0, 6]} onPress={addCount} />
 
       {count >= 5 && <Coin position={[0, 0, 0]} />}
     </Floor>

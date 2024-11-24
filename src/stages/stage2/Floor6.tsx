@@ -13,21 +13,12 @@ export function Floor6({ index, answer7 }: Props) {
   return (
     <Floor index={index} width={10} depth={10}>
       <PressingButton
-        width={1.1}
-        depth={1.1}
         position={[-3, 0, 0]}
         pressing={pressing}
         setPressing={setPressing}
       />
 
-      {pressing && (
-        <PressedButton
-          width={1.1}
-          depth={1.1}
-          position={[3, 0, 0]}
-          onPress={nextLevel}
-        />
-      )}
+      {pressing && <PressedButton position={[3, 0, 0]} onPress={nextLevel} />}
 
       {answer7.startsWith("A") && <Coin position={[0, 0, -3]} />}
       {answer7.endsWith("D") && <Coin position={[0, 0, 3]} />}

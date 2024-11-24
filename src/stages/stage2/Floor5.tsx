@@ -23,12 +23,7 @@ export function Floor5({ index }: Props) {
       )}
 
       {count >= 25 && (
-        <PressedButton
-          width={1.1}
-          depth={1.1}
-          position={[0, 0, 0]}
-          onPress={nextLevel}
-        />
+        <PressedButton position={[0, 0, 0]} onPress={nextLevel} />
       )}
     </Floor>
   );

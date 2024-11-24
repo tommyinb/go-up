@@ -6,15 +6,10 @@ import { ButtonBox } from "../stage1/ButtonBox";
 import { FloorContext } from "../stage1/FloorContext";
 import { useGetPressers } from "../stage1/useGetPressers";
 
-export function PressingButton({
-  width,
-  depth,
-  position,
-  pressing,
-  setPressing,
-}: Props) {
+export function PressingButton({ position, pressing, setPressing }: Props) {
   const buttonRef = useRef<Group>(null);
-  const getPressers = useGetPressers(buttonRef, width, depth);
+  const size = 1.1;
+  const getPressers = useGetPressers(buttonRef, size, size);
   useFrame(() => {
     const currentPressers = getPressers();
     setPressing(currentPressers.length > 0);
@@ -32,8 +27,8 @@ export function PressingButton({
   return (
     <ButtonBox
       boxRef={buttonRef}
-      width={width}
-      depth={depth}
+      width={size}
+      depth={size}
       position={position}
       opacity={visiting ? 1 : 0.6}
       pressed={pressing}
@@ -42,8 +37,6 @@ export function PressingButton({
 }
 
 interface Props {
-  width: number;
-  depth: number;
   position: Vector3;
   pressing: boolean;
   setPressing: (pressing: boolean) => void;

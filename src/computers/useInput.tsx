@@ -1,18 +1,16 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useMemo } from "react";
+import { Vector3 } from "three";
 import { GameContext } from "../games/GameContext";
-import { PlayerInput } from "../games/playerInput";
 
 export function useInput(id: number) {
-  const { round, computers } = useContext(GameContext);
+  const { round, computers, floors } = useContext(GameContext);
 
   const computer = useMemo(
     () => computers.find((computer) => computer.id === id),
     [computers, id]
   );
 
-  const [output, setOutput] = useState<PlayerInput>();
-
-  useEffect(() => {
+  const input = useMemo(() => {
     if (!computer) {
       return;
     }
@@ -22,10 +20,59 @@ export function useInput(id: number) {
       return;
     }
 
-    const input = inputs[inputs.length - 1];
-
-    setOutput(input);
+    return inputs[inputs.length - 1];
   }, [computer, round.time]);
 
-  return output;
+  return useMemo(() => {
+    if (!input) {
+      return undefined;
+    }
+
+    const floorItems = floors.map((floor) => {
+      const position = new Vector3();
+      floor.groupRef.current?.getWorldPosition(position);
+
+      return {
+        floor,
+        position,
+      };
+    });
+
+    const validItems = floorItems.filter(
+      (item) =>
+        Math.abs(item.position.x - input.target.x) <= item.floor.width / 2 &&
+        Math.abs(item.position.z - input.target.z) <= item.floor.depth / 2
+    );
+    if (validItems.length <= 0) {
+      return;
+    }
+
+    const matchedItem = validItems.find(
+      (item) => Math.abs(item.position.y - input.target.y) <= 0.1
+    );
+    if (matchedItem) {
+      return input;
+    } else {
+      const lowerItems = validItems.filter(
+        (item) => item.position.y < input.target.y
+      );
+      if (lowerItems.length <= 0) {
+        return;
+      }
+
+      const sortedItems = [...lowerItems].sort(
+        (a, b) => a.position.y - b.position.y
+      );
+      const lastItem = sortedItems[sortedItems.length - 1];
+
+      return {
+        ...input,
+        target: new Vector3(
+          input.target.x,
+          lastItem.position.y,
+          input.target.z
+        ),
+      };
+    }
+  }, [floors, input]);
 }

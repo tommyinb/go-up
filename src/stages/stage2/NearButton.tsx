@@ -6,9 +6,10 @@ import { ButtonBox } from "../stage1/ButtonBox";
 import { usePressed } from "../stage1/usePressed";
 import { useNear } from "./useNear";
 
-export function NearButton({ width, depth, position, onPress }: Props) {
+export function NearButton({ position, onPress }: Props) {
   const ref = useRef<Group>(null);
-  const pressed = usePressed(ref, width, depth);
+  const size = 1.1;
+  const pressed = usePressed(ref, size, size);
 
   const shakeCamera = useShakeCamera();
   useEffect(() => {
@@ -19,13 +20,13 @@ export function NearButton({ width, depth, position, onPress }: Props) {
     }
   }, [onPress, pressed, shakeCamera]);
 
-  const near = useNear(ref, width * 3, depth * 3, !pressed);
+  const near = useNear(ref, size * 3, size * 3, !pressed);
 
   return (
     <ButtonBox
       boxRef={ref}
-      width={width}
-      depth={depth}
+      width={size}
+      depth={size}
       position={position}
       opacity={pressed || near ? 1 : 0}
       pressed={pressed}
@@ -34,8 +35,6 @@ export function NearButton({ width, depth, position, onPress }: Props) {
 }
 
 interface Props {
-  width: number;
-  depth: number;
   position: Vector3;
 
   onPress: () => void;

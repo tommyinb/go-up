@@ -8,12 +8,7 @@ export function Floor7({ index, active }: Props) {
 
   return (
     <Floor index={index} width={10} depth={10}>
-      <PressedButton
-        width={1.1}
-        depth={1.1}
-        position={[0, 0, 0]}
-        onPress={nextLevel}
-      />
+      <PressedButton position={[0, 0, 0]} onPress={nextLevel} />
 
       {active &&
         Array.from({ length: 3 }).flatMap((_, i) =>

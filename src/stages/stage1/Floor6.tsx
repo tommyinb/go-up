@@ -40,29 +40,21 @@ export function Floor6({ index, setCompleted }: Props) {
   return (
     <Floor index={index} width={10} depth={10}>
       <PressedButton
-        width={1.1}
-        depth={1.1}
         position={[0, 0, -3]}
         onPress={useCallback(() => setPressed1(true), [])}
       />
 
       <PressedButton
-        width={1.1}
-        depth={1.1}
         position={[0, 0, 3]}
         onPress={useCallback(() => setPressed2(true), [])}
       />
 
       <PressedButton
-        width={1.1}
-        depth={1.1}
         position={[-3, 0, 0]}
         onPress={useCallback(() => setPressed3(true), [])}
       />
 
       <PressedButton
-        width={1.1}
-        depth={1.1}
         position={[3, 0, 0]}
         onPress={useCallback(() => setPressed4(true), [])}
       />

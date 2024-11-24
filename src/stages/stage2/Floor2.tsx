@@ -21,8 +21,6 @@ export function Floor2({ index }: Props) {
         Array.from({ length: 5 }).map((_, j) => (
           <PressedButton
             key={`${i}, ${j}`}
-            width={1}
-            depth={1}
             position={[(i - 2) * 1.5, 0, (j - 2) * 1.5]}
             onPress={addCount}
           />

@@ -13,8 +13,6 @@ export function Floor1({ index }: Props) {
   return (
     <Floor index={index} width={10} depth={10}>
       <CountButton
-        width={1.1}
-        depth={1.1}
         position={[-3, 0, 3]}
         count={10}
         onComplete={useCallback(() => setActive(true), [])}
@@ -23,14 +21,7 @@ export function Floor1({ index }: Props) {
       <Coin position={[-3, 0, -3]} />
       <Coin position={[3, 0, 3]} />
 
-      {active && (
-        <PressedButton
-          width={1}
-          depth={1}
-          position={[3, 0, -3]}
-          onPress={nextLevel}
-        />
-      )}
+      {active && <PressedButton position={[3, 0, -3]} onPress={nextLevel} />}
     </Floor>
   );
 }
