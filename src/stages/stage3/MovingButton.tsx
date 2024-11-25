@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { Vector3Tuple } from "three";
+import { GameContext } from "../../games/GameContext";
 import { PressingButton } from "../stage2/PressingButton";
 import { useMovingPosition } from "./useMovingPosition";
+import { useMovingProportion } from "./useMovingProportion";
 
 export function MovingButton({
   left,
@@ -9,7 +12,10 @@ export function MovingButton({
   pressing,
   setPressing,
 }: Props) {
-  const position = useMovingPosition(left, right, duration);
+  const { round } = useContext(GameContext);
+
+  const proportion = useMovingProportion(round.time, duration);
+  const position = useMovingPosition(left, right, proportion);
 
   return (
     <PressingButton

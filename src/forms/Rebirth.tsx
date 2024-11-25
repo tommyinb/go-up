@@ -50,7 +50,7 @@ export function Rebirth() {
         onClick={() => {
           if (player.inputs.length > 0) {
             setComputers((computers) => [
-              ...computers.slice(-5),
+              ...computers,
               {
                 id:
                   Math.max(...computers.map((computer) => computer.id), 0) + 1,

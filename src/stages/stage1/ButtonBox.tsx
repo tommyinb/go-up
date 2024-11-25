@@ -19,6 +19,7 @@ export function ButtonBox({
           color={pressed ? "#eee" : "#c00"}
           transparent={opacity < 1}
           opacity={opacity}
+          visible={opacity > 0}
         />
       </mesh>
     </group>

@@ -8,7 +8,7 @@ export function MenuProvider({ children }: PropsWithChildren) {
   const [run, setRun] = useState(0);
 
   const [stages, setStages] = useState<Stage[]>([]);
-  const [selected, setSelected] = useState(3);
+  const [selected, setSelected] = useState(0);
 
   return (
     <MenuContext.Provider

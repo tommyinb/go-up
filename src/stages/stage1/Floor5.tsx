@@ -1,4 +1,4 @@
-import { Coin } from "./Coin";
+import { CoinRing } from "./CoinRing";
 import { Floor } from "./Floor";
 import { PressedButton } from "./PressedButton";
 import { useNextLevel } from "./useNextLevel";
@@ -10,16 +10,7 @@ export function Floor5({ index }: Props) {
     <Floor index={index} width={10} depth={10}>
       <PressedButton position={[0, 0, 0]} onPress={nextLevel} />
 
-      {Array.from({ length: 3 }).flatMap((_, i) =>
-        Array.from({ length: 3 }).map((_, j) =>
-          !(i === 1 && j === 1) ? (
-            <Coin
-              key={`${i}-${j}`}
-              position={[(i - 1) * 2.5, 0, (j - 1) * 2.5]}
-            />
-          ) : undefined
-        )
-      )}
+      <CoinRing width={5} depth={5} />
     </Floor>
   );
 }

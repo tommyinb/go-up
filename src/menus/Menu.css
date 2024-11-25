@@ -5,8 +5,13 @@
   backdrop-filter: blur(2px);
   padding: 10px 20px 30px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .top {
+    flex: 1 2;
+  }
 
   .scroll {
     width: 500px;
@@ -26,6 +31,10 @@
       flex-direction: column;
       gap: 10px;
     }
+  }
+
+  .bottom {
+    flex: 2 1;
   }
 
   &:not(.active) {
