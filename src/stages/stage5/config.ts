@@ -6,5 +6,5 @@ export const config: StageConfig = {
   time: 30,
   prize: 1,
   level: 10,
-  coin: 70,
+  coin: 110,
 };

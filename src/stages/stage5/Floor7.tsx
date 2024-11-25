@@ -8,13 +8,17 @@ export function Floor7({ index, active }: Props) {
 
   return (
     <Floor index={index} width={10} depth={10}>
-      <Coin position={[-3, 0, 0]} />
-      <Coin position={[3, 0, 0]} />
+      <Coin position={[-2, 0, 0]} />
+      <Coin position={[2, 0, 0]} />
+      <Coin position={[0, 0, -2]} />
+      <Coin position={[0, 0, 2]} />
 
       {active && (
         <>
-          <Coin position={[0, 0, -3]} />
-          <Coin position={[0, 0, 3]} />
+          <Coin position={[-4, 0, 0]} />
+          <Coin position={[4, 0, 0]} />
+          <Coin position={[0, 0, -4]} />
+          <Coin position={[0, 0, 4]} />
 
           <PressedButton position={[0, 0, 0]} onPress={nextLevel} />
         </>
