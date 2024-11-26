@@ -1,6 +1,8 @@
 import { Vector3 } from "@react-three/fiber";
 import { useContext, useEffect, useRef } from "react";
 import { Group } from "three";
+import { CameraShakeSize } from "../../scenes/cameraShakeSize";
+import { useShakeCamera } from "../../scenes/useShakeCamera";
 import { CoinBox } from "./CoinBox";
 import { FloorContext } from "./FloorContext";
 import { usePressed } from "./usePressed";
@@ -11,11 +13,14 @@ export function Coin({ position }: Props) {
   const pressed = usePressed(ref, 0.3, 0.3);
 
   const setScore = useSetScore();
+  const shakeCamera = useShakeCamera(CameraShakeSize.Small);
   useEffect(() => {
     if (pressed) {
       setScore((score) => ({ ...score, coin: score.coin + 1 }));
+
+      shakeCamera();
     }
-  }, [pressed, setScore]);
+  }, [pressed, setScore, shakeCamera]);
 
   const { visiting } = useContext(FloorContext);
 

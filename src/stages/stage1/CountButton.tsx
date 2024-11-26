@@ -1,6 +1,7 @@
 import { useFrame, Vector3 } from "@react-three/fiber";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Group } from "three";
+import { CameraShakeSize } from "../../scenes/cameraShakeSize";
 import { useShakeCamera } from "../../scenes/useShakeCamera";
 import { ButtonBox } from "./ButtonBox";
 import { FloorContext } from "./FloorContext";
@@ -32,7 +33,7 @@ export function CountButton({
 
   const [pressedCount, setPressedDown] = useState(0);
 
-  const shakeCamera = useShakeCamera();
+  const shakeCamera = useShakeCamera(CameraShakeSize.Small);
   useEffect(() => {
     if (pressedCount > 0 && pressedCount <= targetCount) {
       shakeCamera();

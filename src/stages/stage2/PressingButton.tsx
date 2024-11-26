@@ -1,6 +1,7 @@
 import { useFrame, Vector3 } from "@react-three/fiber";
 import { useContext, useEffect, useRef } from "react";
 import { Group } from "three";
+import { CameraShakeSize } from "../../scenes/cameraShakeSize";
 import { useShakeCamera } from "../../scenes/useShakeCamera";
 import { ButtonBox } from "../stage1/ButtonBox";
 import { FloorContext } from "../stage1/FloorContext";
@@ -15,7 +16,7 @@ export function PressingButton({ position, pressing, setPressing }: Props) {
     setPressing(currentPressers.length > 0);
   });
 
-  const shakeCamera = useShakeCamera();
+  const shakeCamera = useShakeCamera(CameraShakeSize.Small);
   useEffect(() => {
     if (pressing) {
       shakeCamera();

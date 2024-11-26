@@ -5,13 +5,14 @@ import {
   SetStateAction,
 } from "react";
 import { Vector3 } from "three";
+import { CameraShake } from "./cameraShake";
 
 export const SceneContext = createContext<{
   cameraTarget: Vector3;
   setCameraTarget: Dispatch<SetStateAction<Vector3>>;
 
-  cameraShake: number;
-  setCameraShake: Dispatch<SetStateAction<number>>;
+  cameraShakes: CameraShake[];
+  setCameraShakes: Dispatch<SetStateAction<CameraShake[]>>;
 
   clickHandlers: MouseEventHandler<HTMLDivElement>[];
   setClickHandlers: Dispatch<
@@ -21,8 +22,8 @@ export const SceneContext = createContext<{
   cameraTarget: new Vector3(),
   setCameraTarget: () => {},
 
-  cameraShake: 0,
-  setCameraShake: () => {},
+  cameraShakes: [],
+  setCameraShakes: () => {},
 
   clickHandlers: [],
   setClickHandlers: () => {},

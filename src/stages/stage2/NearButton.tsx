@@ -1,6 +1,7 @@
 import { Vector3 } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { Group } from "three";
+import { CameraShakeSize } from "../../scenes/cameraShakeSize";
 import { useShakeCamera } from "../../scenes/useShakeCamera";
 import { ButtonBox } from "../stage1/ButtonBox";
 import { usePressed } from "../stage1/usePressed";
@@ -11,7 +12,7 @@ export function NearButton({ position, onPress }: Props) {
   const size = 1.1;
   const pressed = usePressed(ref, size, size);
 
-  const shakeCamera = useShakeCamera();
+  const shakeCamera = useShakeCamera(CameraShakeSize.Small);
   useEffect(() => {
     if (pressed) {
       onPress();
