@@ -28,11 +28,6 @@ export function Save() {
   const { setScores } = useContext(ScoreContext);
   useEffect(() => {
     if (stage && result) {
-      const result =
-        stage.score.prize >= stage.config.prize
-          ? ScoreResult.Success
-          : ScoreResult.Failure;
-
       setScores((oldScores) => {
         const oldScore = oldScores.find((win) => win.stage === stage.config.id);
 

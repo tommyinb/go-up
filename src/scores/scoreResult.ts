@@ -1,4 +1,4 @@
 export enum ScoreResult {
-  Success = "Success",
-  Failure = "Failure",
+  Success = "success",
+  Failure = "failure",
 }

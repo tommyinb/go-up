@@ -44,7 +44,10 @@ export function MenuItem({ index }: Props) {
   return (
     <div
       className={`menus-MenuItem ${index === selected ? "selected" : ""} ${
-        index <= 0 || lastScore?.result === ScoreResult.Success || debug
+        index <= 0 ||
+        currentScore ||
+        lastScore?.result === ScoreResult.Success ||
+        debug
           ? "active"
           : ""
       }`}
