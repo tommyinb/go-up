@@ -55,6 +55,7 @@ export function CountButton({
       width={size}
       depth={size}
       position={position}
+      color={pressedCount >= targetCount ? "#eee" : pressing ? "#c44" : "#c00"}
       opacity={visiting ? 1 : 0.6}
       pressed={pressing || pressedCount >= targetCount}
     />

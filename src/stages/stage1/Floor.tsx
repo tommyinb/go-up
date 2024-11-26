@@ -1,3 +1,4 @@
+import { Text } from "@react-three/drei";
 import {
   PropsWithChildren,
   useContext,
@@ -6,6 +7,7 @@ import {
   useRef,
 } from "react";
 import { Group, Mesh } from "three";
+import { DebugContext } from "../../debugs/DebugContext";
 import { Floor as GameFloor } from "../../games/floor";
 import { GameContext } from "../../games/GameContext";
 import { FloorContext } from "./FloorContext";
@@ -29,6 +31,8 @@ export function Floor({ index, width, depth, children }: Props) {
 
   const visiting = useVisiting(groupRef);
 
+  const { debug } = useContext(DebugContext);
+
   return (
     <group ref={groupRef} position={[0, index * 3, 0]}>
       <mesh ref={meshRef} position={[0, -0.05, 0]}>
@@ -44,6 +48,16 @@ export function Floor({ index, width, depth, children }: Props) {
       <FloorContext.Provider value={{ visiting }}>
         {children}
       </FloorContext.Provider>
+
+      {debug && (
+        <Text
+          color="#444"
+          position={[0, 0.1, -depth / 2 - 1]}
+          rotation={[-Math.PI / 2, 0, 0]}
+        >
+          {index}
+        </Text>
+      )}
     </group>
   );
 }

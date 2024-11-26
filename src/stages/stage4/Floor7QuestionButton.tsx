@@ -37,6 +37,7 @@ export function Floor7QuestionButton({
           },
           [setAnswers, value]
         )}
+        disabled={false}
       />
 
       {debug && (

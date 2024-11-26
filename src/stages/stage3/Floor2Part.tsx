@@ -13,37 +13,33 @@ export function Floor2Part({ active, setActive }: Props) {
 
   return (
     <>
-      {(!active || pressing1) && (
-        <PressingButton
-          position={[-3, 0, 0]}
-          pressing={pressing1}
-          setPressing={setPressing1}
-        />
-      )}
+      <PressingButton
+        position={[-3, 0, 0]}
+        pressing={pressing1}
+        setPressing={setPressing1}
+        disabled={active}
+      />
 
-      {(!active || pressing2) && (
-        <PressingButton
-          position={[3, 0, 0]}
-          pressing={pressing2}
-          setPressing={setPressing2}
-        />
-      )}
+      <PressingButton
+        position={[3, 0, 0]}
+        pressing={pressing2}
+        setPressing={setPressing2}
+        disabled={active}
+      />
 
-      {(!active || pressing3) && (
-        <PressingButton
-          position={[0, 0, -3]}
-          pressing={pressing3}
-          setPressing={setPressing3}
-        />
-      )}
+      <PressingButton
+        position={[0, 0, -3]}
+        pressing={pressing3}
+        setPressing={setPressing3}
+        disabled={active}
+      />
 
-      {(!active || pressing4) && (
-        <PressingButton
-          position={[0, 0, 3]}
-          pressing={pressing4}
-          setPressing={setPressing4}
-        />
-      )}
+      <PressingButton
+        position={[0, 0, 3]}
+        pressing={pressing4}
+        setPressing={setPressing4}
+        disabled={active}
+      />
 
       {((pressing1 && pressing2 && pressing3 && pressing4) || active) && (
         <PressedButton position={[0, 0, 0]} onPress={activate} />

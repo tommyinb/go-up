@@ -1,4 +1,4 @@
-import { Vector3 } from "@react-three/fiber";
+import { Color, Vector3 } from "@react-three/fiber";
 import { RefObject } from "react";
 import { Group } from "three";
 
@@ -7,6 +7,7 @@ export function ButtonBox({
   width,
   depth,
   position,
+  color,
   opacity,
   pressed,
 }: Props) {
@@ -16,7 +17,7 @@ export function ButtonBox({
         <boxGeometry args={[width, pressed ? 0.01 : 0.3, depth]} />
 
         <meshStandardMaterial
-          color={pressed ? "#eee" : "#c00"}
+          color={color}
           transparent={opacity < 1}
           opacity={opacity}
           visible={opacity > 0}
@@ -33,6 +34,7 @@ interface Props {
   depth: number;
   position: Vector3;
 
+  color: Color;
   opacity: number;
 
   pressed: boolean;

@@ -33,6 +33,7 @@ export function Floor2QuestionButton({
           },
           [setAnswers, value]
         )}
+        disabled={false}
       />
 
       {debug && (

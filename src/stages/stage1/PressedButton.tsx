@@ -29,6 +29,7 @@ export function PressedButton({ position, onPress }: Props) {
       width={size}
       depth={size}
       position={position}
+      color={pressed ? "#eee" : "#c00"}
       opacity={visiting ? 1 : 0.6}
       pressed={pressed}
     />

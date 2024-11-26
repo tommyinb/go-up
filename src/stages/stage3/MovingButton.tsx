@@ -22,6 +22,7 @@ export function MovingButton({
       position={position}
       pressing={pressing}
       setPressing={setPressing}
+      disabled={false}
     />
   );
 }

@@ -34,8 +34,9 @@ export function Floor9({ index, active, completed, setCompleted }: Props) {
       <group position={[-2, 0, 0]}>
         <PressingButton
           position={[0, 0, 0]}
-          pressing={pressing1 || completed}
+          pressing={pressing1}
           setPressing={setPressing1}
+          disabled={completed}
         />
 
         {allPressed && <CoinRing width={2} depth={2} />}
@@ -44,8 +45,9 @@ export function Floor9({ index, active, completed, setCompleted }: Props) {
       <group position={[2, 0, 0]}>
         <PressingButton
           position={[0, 0, 0]}
-          pressing={pressing2 || completed}
+          pressing={pressing2}
           setPressing={setPressing2}
+          disabled={completed}
         />
 
         {allPressed && <CoinRing width={2} depth={2} />}
@@ -54,8 +56,9 @@ export function Floor9({ index, active, completed, setCompleted }: Props) {
       <group position={[0, 0, -2]}>
         <PressingButton
           position={[0, 0, 0]}
-          pressing={pressing3 || completed}
+          pressing={pressing3}
           setPressing={setPressing3}
+          disabled={completed}
         />
 
         {allPressed && <CoinRing width={2} depth={2} />}
@@ -64,8 +67,9 @@ export function Floor9({ index, active, completed, setCompleted }: Props) {
       <group position={[0, 0, 2]}>
         <PressingButton
           position={[0, 0, 0]}
-          pressing={pressing4 || completed}
+          pressing={pressing4}
           setPressing={setPressing4}
+          disabled={completed}
         />
 
         {allPressed && <CoinRing width={2} depth={2} />}

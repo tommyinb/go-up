@@ -13,6 +13,7 @@ export function FakeButton({ position }: Props) {
       width={size}
       depth={size}
       position={position}
+      color="#c00"
       opacity={visiting ? 1 : 0.6}
       pressed={false}
     />
