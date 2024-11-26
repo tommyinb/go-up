@@ -16,7 +16,7 @@ export function Floor({ index, width, depth, children }: Props) {
   const meshRef = useRef<Mesh>(null);
 
   const floor = useMemo<GameFloor>(
-    () => ({ width, depth, groupRef, meshRef }),
+    () => ({ groupRef, meshRef, width, depth }),
     [depth, width]
   );
 
