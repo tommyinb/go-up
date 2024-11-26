@@ -25,10 +25,11 @@ export function Rebirth() {
     <Form
       className="forms-Rebirth"
       active={
-        mode === Mode.Game &&
         !!stage &&
+        mode === Mode.Game &&
+        round.time <= 0 &&
         round.index < stage.config.round - 1 &&
-        round.time <= 0
+        stage.score.prize < stage.config.prize
       }
     >
       <div className="round">

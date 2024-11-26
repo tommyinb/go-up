@@ -17,11 +17,10 @@ export function Success() {
     <Form
       className="forms-Success"
       active={
-        mode === Mode.Game &&
         !!stage &&
-        stage.score.prize >= stage.config.prize &&
-        round.index >= stage.config.round - 1 &&
-        round.time <= 0
+        mode === Mode.Game &&
+        round.time <= 0 &&
+        stage.score.prize >= stage.config.prize
       }
     >
       <div className="title">Congrats!</div>

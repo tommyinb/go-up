@@ -1,25 +1,17 @@
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { Vector3 } from "three";
+import { DebugContext } from "../debugs/DebugContext";
 import { GameContext } from "../games/GameContext";
 import { SceneContext } from "../scenes/SceneContext";
+import { ScoreContext } from "../scores/ScoreContext";
+import { ScoreResult } from "../scores/scoreResult";
 import { MenuContext } from "./MenuContext";
 import "./MenuItem.css";
 import { Mode } from "./mode";
-import { StageConfig } from "./stageConfig";
 
-export function MenuItem({ index, config }: Props) {
+export function MenuItem({ index }: Props) {
   const { setMode, setRun, stages, setStages, selected, setSelected } =
     useContext(MenuContext);
-
-  useEffect(() => {
-    setStages((stages) => [
-      ...stages,
-      { index, config, score: { prize: 0, level: 0, coin: 0 } },
-    ]);
-
-    return () =>
-      setStages((stages) => stages.filter((stage) => stage.index !== 0));
-  }, [config, index, setStages]);
 
   const stage = useMemo(
     () => stages.find((stage) => stage.index === index),
@@ -29,9 +21,33 @@ export function MenuItem({ index, config }: Props) {
   const { setRound, setPlayer, setComputers } = useContext(GameContext);
   const { setCameraTarget } = useContext(SceneContext);
 
+  const { scores } = useContext(ScoreContext);
+  const currentScore = useMemo(
+    () => scores.find((score) => score.stage === stage?.config.id),
+    [stage?.config.id, scores]
+  );
+
+  const lastScore = useMemo(() => {
+    const beforeStages = stages.filter((stage) => stage.index < index);
+    if (beforeStages.length <= 0) {
+      return undefined;
+    }
+
+    const sortedStages = beforeStages.sort((a, b) => a.index - b.index);
+    const lastStage = sortedStages[sortedStages.length - 1];
+
+    return scores.find((score) => score.stage === lastStage.config.id);
+  }, [index, stages, scores]);
+
+  const { debug } = useContext(DebugContext);
+
   return (
     <div
-      className={`menus-MenuItem ${index === selected ? "selected" : ""}`}
+      className={`menus-MenuItem ${index === selected ? "selected" : ""} ${
+        index <= 0 || lastScore?.result === ScoreResult.Success || debug
+          ? "active"
+          : ""
+      }`}
       onClick={() => {
         setSelected(index);
 
@@ -64,13 +80,14 @@ export function MenuItem({ index, config }: Props) {
     >
       <div className="name">{stage?.config.name}</div>
 
-      <div className="score">
+      <div className={`score ${currentScore ? "active" : ""}`}>
         <div>
-          Level {(stage?.score.level ?? 0) + 1} / {config.level}
+          Level {currentScore ? currentScore.score.level + 1 : "-"} /{" "}
+          {stage?.config.level}
         </div>
 
         <div>
-          Coin {stage?.score.coin} / {config.coin}
+          Coin {currentScore?.score.coin ?? "-"} / {stage?.config.coin}
         </div>
       </div>
     </div>
@@ -79,5 +96,4 @@ export function MenuItem({ index, config }: Props) {
 
 interface Props {
   index: number;
-  config: StageConfig;
 }

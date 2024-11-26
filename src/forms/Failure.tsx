@@ -24,11 +24,11 @@ export function Failure() {
     <Form
       className="forms-Failure"
       active={
-        mode === Mode.Game &&
         !!stage &&
-        stage.score.prize < stage.config.prize &&
+        mode === Mode.Game &&
+        round.time <= 0 &&
         round.index >= stage.config.round - 1 &&
-        round.time <= 0
+        stage.score.prize < stage.config.prize
       }
     >
       <div className="title">Game Over</div>

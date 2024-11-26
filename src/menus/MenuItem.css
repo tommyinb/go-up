@@ -21,6 +21,15 @@
 
     .score {
       color: #fff;
+
+      &:not(.active) {
+        opacity: 0.2;
+      }
     }
+  }
+
+  &:not(.active) {
+    pointer-events: none;
+    opacity: 0.2;
   }
 }

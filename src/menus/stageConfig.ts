@@ -1,4 +1,5 @@
 export interface StageConfig {
+  id: string;
   name: string;
 
   round: number;

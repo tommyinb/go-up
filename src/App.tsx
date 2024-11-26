@@ -10,28 +10,34 @@ import { Menu } from "./menus/Menu";
 import { MenuProvider } from "./menus/MenuProvider";
 import { Scene } from "./scenes/Scene";
 import { SceneProvider } from "./scenes/SceneProvider";
+import { Save } from "./scores/Save";
+import { ScoreProvider } from "./scores/ScoreProvider";
 
 function App() {
   return (
     <div className="App">
       <DebugProvider>
-        <MenuProvider>
-          <SceneProvider>
-            <GameProvider>
-              <Scene>
-                <Game />
-              </Scene>
+        <ScoreProvider>
+          <MenuProvider>
+            <SceneProvider>
+              <GameProvider>
+                <Scene>
+                  <Game />
+                </Scene>
 
-              <Menu />
+                <Menu />
 
-              <Header />
+                <Header />
 
-              <Rebirth />
-              <Failure />
-              <Success />
-            </GameProvider>
-          </SceneProvider>
-        </MenuProvider>
+                <Rebirth />
+                <Failure />
+                <Success />
+
+                <Save />
+              </GameProvider>
+            </SceneProvider>
+          </MenuProvider>
+        </ScoreProvider>
       </DebugProvider>
     </div>
   );
