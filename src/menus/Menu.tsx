@@ -12,7 +12,7 @@ export function Menu() {
       <div className="top" />
 
       <div className="scroll">
-        <div className="title">Solo Playground</div>
+        <div className="title">Go Up</div>
 
         <div className="content">
           {stages.map((stage) => (

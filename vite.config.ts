@@ -2,6 +2,6 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/solo-playground-3",
+  base: "/go-up",
   plugins: [react()],
 });

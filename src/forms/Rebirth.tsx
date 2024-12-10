@@ -80,7 +80,7 @@ export function Rebirth() {
           });
         }}
       >
-        Again
+        Continue
       </div>
 
       <div className="menu" onClick={() => setMode(Mode.Menu)}>
