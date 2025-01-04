@@ -1,4 +1,4 @@
-import { Text } from "@react-three/drei";
+import { Text, useTexture } from "@react-three/drei";
 import {
   PropsWithChildren,
   useContext,
@@ -6,9 +6,11 @@ import {
   useMemo,
   useRef,
 } from "react";
-import { Group, Mesh } from "three";
+import { DoubleSide, Group, Mesh } from "three";
+import { DebugContext } from "../../debugs/DebugContext";
 import { Floor as GameFloor } from "../../games/floor";
 import { GameContext } from "../../games/GameContext";
+import floorTexture from "./floor-texture.png";
 import { FloorContext } from "./FloorContext";
 import { useVisiting } from "./useVisiting";
 
@@ -28,17 +30,27 @@ export function Floor({ index, width, depth, children }: Props) {
     return () => setFloors((floors) => floors.filter((f) => f !== floor));
   }, [floor, setFloors]);
 
+  const texture = useTexture(floorTexture);
+
   const visiting = useVisiting(groupRef);
 
+  const { debug } = useContext(DebugContext);
+
   return (
-    <group ref={groupRef} position={[0, index * 3, 0]}>
-      <mesh ref={meshRef} position={[0, -0.05, 0]}>
-        <boxGeometry args={[width, 0.1, depth]} />
+    <group ref={groupRef} position={[0, index * 5, 0]}>
+      <mesh
+        ref={meshRef}
+        position={[0, -0.05, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        receiveShadow
+      >
+        <planeGeometry args={[width, depth]} />
 
         <meshStandardMaterial
-          color="#fff"
-          transparent={!visiting}
+          map={texture}
+          transparent={true}
           opacity={visiting ? 1 : 0.6}
+          side={DoubleSide}
         />
       </mesh>
 
@@ -46,13 +58,15 @@ export function Floor({ index, width, depth, children }: Props) {
         {children}
       </FloorContext.Provider>
 
-      <Text
-        color="#444"
-        position={[0, 0.1, -depth / 2 - 1]}
-        rotation={[-Math.PI / 2, 0, 0]}
-      >
-        {index + 1}
-      </Text>
+      {debug && (
+        <Text
+          color="#444"
+          position={[0, 0.1, -depth / 2 - 1]}
+          rotation={[-Math.PI / 2, 0, 0]}
+        >
+          {index + 1}
+        </Text>
+      )}
     </group>
   );
 }

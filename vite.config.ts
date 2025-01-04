@@ -4,4 +4,5 @@ import { defineConfig } from "vite";
 export default defineConfig({
   base: "/go-up",
   plugins: [react()],
+  assetsInclude: ["**/*.glb"],
 });

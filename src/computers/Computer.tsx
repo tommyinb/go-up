@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Group, Vector3 } from "three";
 import { DebugContext } from "../debugs/DebugContext";
 import { GameContext } from "../games/GameContext";
+import { Hand } from "../players/Hand";
 import { useMove } from "../players/useMove";
 import { useAction } from "./useAction";
 import { useInput } from "./useInput";
@@ -33,7 +34,9 @@ export function Computer({ id }: Props) {
       {debug && <Sphere args={[0.1, 4, 2]} position={target} />}
 
       <group ref={ref}>
-        <mesh position={[0, 0.5, 0]}>
+        <Hand />
+
+        <mesh position={[0, 0.5, 0]} visible={debug}>
           <boxGeometry args={[1, 1, 1]} />
 
           <meshStandardMaterial

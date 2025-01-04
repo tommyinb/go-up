@@ -16,7 +16,15 @@ export function Lights() {
       <directionalLight
         ref={directionalLightRef}
         intensity={4}
-        position={[-4, 3, 4]}
+        position={[-16, 12, 16]}
+        castShadow
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+        shadow-camera-far={200}
+        shadow-camera-left={-10}
+        shadow-camera-right={10}
+        shadow-camera-top={200}
+        shadow-camera-bottom={-10}
       />
     </>
   );
