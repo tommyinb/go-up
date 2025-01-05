@@ -6,7 +6,7 @@ import { DebugContext } from "../../debugs/DebugContext";
 import { useNode } from "../../players/useNode";
 import coinFile from "./coin.glb";
 
-export function CoinBox({ boxRef, position, opacity, pressed }: Props) {
+export function CoinBox({ boxRef, position, pressed }: Props) {
   const coinGltf = useGLTF(coinFile);
   const coinModel = useNode(coinGltf, "coin");
 
@@ -23,11 +23,7 @@ export function CoinBox({ boxRef, position, opacity, pressed }: Props) {
           <mesh position={[0, 0.15, 0]} visible={debug}>
             <boxGeometry args={[0.3, 0.3, 0.3]} />
 
-            <meshStandardMaterial
-              color="#cc0"
-              transparent={opacity < 1}
-              opacity={opacity}
-            />
+            <meshStandardMaterial color="#cc0" wireframe={true} />
           </mesh>
         </>
       )}
@@ -39,8 +35,6 @@ interface Props {
   boxRef: RefObject<Group>;
 
   position: Vector3;
-
-  opacity: number;
 
   pressed: boolean;
 }

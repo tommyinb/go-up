@@ -30,7 +30,7 @@ export function NearButton({ position, onPress }: Props) {
       depth={size}
       position={position}
       color={pressed ? "#eee" : "#c00"}
-      opacity={pressed || near ? 1 : 0}
+      visible={pressed || near}
       pressed={pressed}
     />
   );

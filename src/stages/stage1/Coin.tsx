@@ -1,10 +1,9 @@
 import { Vector3 } from "@react-three/fiber";
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Group } from "three";
 import { CameraShakeSize } from "../../scenes/cameraShakeSize";
 import { useShakeCamera } from "../../scenes/useShakeCamera";
 import { CoinBox } from "./CoinBox";
-import { FloorContext } from "./FloorContext";
 import { usePressed } from "./usePressed";
 import { useSetScore } from "./useSetScore";
 
@@ -22,16 +21,7 @@ export function Coin({ position }: Props) {
     }
   }, [pressed, setScore, shakeCamera]);
 
-  const { visiting } = useContext(FloorContext);
-
-  return (
-    <CoinBox
-      boxRef={ref}
-      position={position}
-      opacity={visiting ? 1 : 0.6}
-      pressed={pressed}
-    />
-  );
+  return <CoinBox boxRef={ref} position={position} pressed={pressed} />;
 }
 
 interface Props {

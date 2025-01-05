@@ -1,11 +1,13 @@
+import { useGLTF } from "@react-three/drei";
 import { Vector3 } from "@react-three/fiber";
 import { useContext, useEffect, useRef } from "react";
 import { Group } from "three";
+import { DebugContext } from "../../debugs/DebugContext";
+import { useNode } from "../../players/useNode";
 import { CameraShakeSize } from "../../scenes/cameraShakeSize";
 import { useShakeCamera } from "../../scenes/useShakeCamera";
-import { FloorContext } from "./FloorContext";
-import { PrizeConfettiBox } from "./PrizeConfettiBox";
-import { PrizeConfettiRing } from "./PrizeConfettiRing";
+import prizeFile from "./prize.glb";
+import { PrizeConfetti } from "./PrizeConfetti";
 import { usePressed } from "./usePressed";
 import { useSetScore } from "./useSetScore";
 
@@ -23,35 +25,25 @@ export function Prize({ position }: Props) {
     }
   }, [pressed, setScore, shakeCamera]);
 
-  const { visiting } = useContext(FloorContext);
+  const prizeGltf = useGLTF(prizeFile);
+  const prizeDiamond = useNode(prizeGltf, "diamond");
+
+  const { debug } = useContext(DebugContext);
 
   return (
     <group ref={ref} position={position}>
       {pressed ? (
-        <>
-          <PrizeConfettiBox
-            count={300}
-            boxSize={[1, 1, 1]}
-            maxVelocity={[3, 2, 3]}
-          />
-
-          <PrizeConfettiRing
-            count={300}
-            ringWidth={2}
-            ringHeight={1}
-            velocity={8}
-          />
-        </>
+        <PrizeConfetti />
       ) : (
-        <mesh position={[0, 0.35, 0]}>
-          <boxGeometry args={[0.7, 0.7, 0.7]} />
+        <>
+          <primitive object={prizeDiamond} />
 
-          <meshStandardMaterial
-            color="#0ff"
-            transparent={!visiting}
-            opacity={visiting ? 1 : 0.6}
-          />
-        </mesh>
+          <mesh position={[0, 0.35, 0]} visible={debug}>
+            <boxGeometry args={[0.7, 0.7, 0.7]} />
+
+            <meshStandardMaterial color="#0ff" wireframe={true} />
+          </mesh>
+        </>
       )}
     </group>
   );

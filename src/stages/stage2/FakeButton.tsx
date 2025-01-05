@@ -1,20 +1,14 @@
 import { Vector3 } from "@react-three/fiber";
-import { useContext } from "react";
 import { ButtonBox } from "../stage1/ButtonBox";
-import { FloorContext } from "../stage1/FloorContext";
 
 export function FakeButton({ position }: Props) {
-  const { visiting } = useContext(FloorContext);
-
-  const size = 1.1;
-
   return (
     <ButtonBox
-      width={size}
-      depth={size}
+      width={1.1}
+      depth={1.1}
       position={position}
       color="#c00"
-      opacity={visiting ? 1 : 0.6}
+      visible={true}
       pressed={false}
     />
   );

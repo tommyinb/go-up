@@ -1,10 +1,9 @@
 import { useFrame, Vector3 } from "@react-three/fiber";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Group } from "three";
 import { CameraShakeSize } from "../../scenes/cameraShakeSize";
 import { useShakeCamera } from "../../scenes/useShakeCamera";
 import { ButtonBox } from "./ButtonBox";
-import { FloorContext } from "./FloorContext";
 import { useGetPressers } from "./useGetPressers";
 
 export function CountButton({
@@ -47,8 +46,6 @@ export function CountButton({
     }
   }, [completed, onComplete]);
 
-  const { visiting } = useContext(FloorContext);
-
   return (
     <ButtonBox
       boxRef={buttonRef}
@@ -56,7 +53,7 @@ export function CountButton({
       depth={size}
       position={position}
       color={pressedCount >= targetCount ? "#eee" : pressing ? "#c44" : "#c00"}
-      opacity={visiting ? 1 : 0.6}
+      visible={true}
       pressed={pressing || pressedCount >= targetCount}
     />
   );

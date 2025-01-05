@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useStage } from "../../forms/useStage";
 import { Floor10 } from "../stage1/Floor10";
+import { usePreload } from "../stage1/usePreload";
 import { Floor1 } from "./Floor1";
 import { Floor2 } from "./Floor2";
 import { Floor3 } from "./Floor3";
@@ -22,6 +23,8 @@ export function Stage() {
   const [active6, setActive6] = useState(false);
   const [active7, setActive7] = useState(false);
   const [active8, setActive8] = useState(false);
+
+  usePreload();
 
   return (
     <>

@@ -1,10 +1,9 @@
 import { Vector3 } from "@react-three/fiber";
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Group } from "three";
 import { CameraShakeSize } from "../../scenes/cameraShakeSize";
 import { useShakeCamera } from "../../scenes/useShakeCamera";
 import { ButtonBox } from "./ButtonBox";
-import { FloorContext } from "./FloorContext";
 import { usePressed } from "./usePressed";
 
 export function PressedButton({ position, onPress }: Props) {
@@ -21,8 +20,6 @@ export function PressedButton({ position, onPress }: Props) {
     }
   }, [onPress, pressed, shakeCamera]);
 
-  const { visiting } = useContext(FloorContext);
-
   return (
     <ButtonBox
       boxRef={ref}
@@ -30,7 +27,7 @@ export function PressedButton({ position, onPress }: Props) {
       depth={size}
       position={position}
       color={pressed ? "#eee" : "#c00"}
-      opacity={visiting ? 1 : 0.6}
+      visible={true}
       pressed={pressed}
     />
   );

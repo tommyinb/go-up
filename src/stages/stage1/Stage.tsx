@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useStage } from "../../forms/useStage";
+
 import { Floor1 } from "./Floor1";
 import { Floor10 } from "./Floor10";
 import { Floor2 } from "./Floor2";
@@ -10,12 +11,15 @@ import { Floor6 } from "./Floor6";
 import { Floor7 } from "./Floor7";
 import { Floor8 } from "./Floor8";
 import { Floor9 } from "./Floor9";
+import { usePreload } from "./usePreload";
 
 export function Stage() {
   const stage = useStage();
   const level = stage?.score.level ?? 0;
 
   const [completed6, setCompleted6] = useState(false);
+
+  usePreload();
 
   return (
     <>

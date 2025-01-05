@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { useStage } from "../../forms/useStage";
 import { Floor10 } from "../stage1/Floor10";
+import { usePreload } from "../stage1/usePreload";
 import { Floor1 } from "./Floor1";
 import { Floor2 } from "./Floor2";
 import { Floor3 } from "./Floor3";
@@ -17,6 +18,8 @@ export function Stage() {
 
   const [completed, setCompleted] = useState(false);
   const complete = useCallback(() => setCompleted(true), []);
+
+  usePreload();
 
   return (
     <>

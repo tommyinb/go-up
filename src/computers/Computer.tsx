@@ -39,11 +39,7 @@ export function Computer({ id }: Props) {
         <mesh position={[0, 0.5, 0]} visible={debug}>
           <boxGeometry args={[1, 1, 1]} />
 
-          <meshStandardMaterial
-            color="#444"
-            transparent={true}
-            opacity={debug ? 0.4 : 0.6}
-          />
+          <meshStandardMaterial color="#444" wireframe={true} />
         </mesh>
       </group>
     </>

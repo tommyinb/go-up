@@ -12,17 +12,18 @@ export function ButtonBox({
   depth,
   position,
   color,
-  opacity,
+  visible,
   pressed,
 }: Props) {
   const buttonGltf = useGLTF(buttonFile);
+
   const centerModel = useNode(buttonGltf, "center");
   const outerModel = useNode(buttonGltf, "outer");
 
   const { debug } = useContext(DebugContext);
 
   return (
-    <group ref={boxRef} position={position}>
+    <group ref={boxRef} position={position} visible={visible}>
       <group position={[0, -0.04, 0]}>
         <group scale={[1, pressed ? 0.1 : 1, 1]}>
           <primitive object={centerModel} />
@@ -34,12 +35,7 @@ export function ButtonBox({
       <mesh position={[0, pressed ? 0.005 : 0.15, 0]} visible={debug}>
         <boxGeometry args={[width, pressed ? 0.01 : 0.3, depth]} />
 
-        <meshStandardMaterial
-          color={color}
-          transparent={opacity < 1}
-          opacity={opacity}
-          visible={opacity > 0}
-        />
+        <meshStandardMaterial color={color} wireframe={true} />
       </mesh>
     </group>
   );
@@ -53,7 +49,7 @@ interface Props {
   position: Vector3;
 
   color: Color;
-  opacity: number;
 
+  visible: boolean;
   pressed: boolean;
 }
