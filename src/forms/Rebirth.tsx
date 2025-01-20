@@ -6,6 +6,7 @@ import { Mode } from "../menus/mode";
 import { SceneContext } from "../scenes/SceneContext";
 import { Form } from "./Form";
 import "./Rebirth.css";
+import { RebirthScore } from "./RebirthScore";
 import { useSetScore } from "./useSetScore";
 import { useStage } from "./useStage";
 
@@ -36,15 +37,7 @@ export function Rebirth() {
         Round {round.index + 1} / {stage?.config.round}
       </div>
 
-      <div className="score">
-        <div className="level">
-          Level {(stage?.score.level ?? 0) + 1} / {stage?.config.level}
-        </div>
-
-        <div className="coin">
-          Coin {stage?.score.coin} / {stage?.config.coin}
-        </div>
-      </div>
+      {stage && <RebirthScore className="score" stage={stage} />}
 
       <div
         className="again"

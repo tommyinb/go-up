@@ -3,6 +3,7 @@ import { GameContext } from "../games/GameContext";
 import { MenuContext } from "../menus/MenuContext";
 import { Mode } from "../menus/mode";
 import { Form } from "./Form";
+import { RebirthScore } from "./RebirthScore";
 import "./Success.css";
 import { useStage } from "./useStage";
 
@@ -29,15 +30,7 @@ export function Success() {
         Round {round.index + 1} / {stage?.config.round}
       </div>
 
-      <div className="score">
-        <div className="level">
-          Level {(stage?.score.level ?? 0) + 1} / {stage?.config.level}
-        </div>
-
-        <div className="coin">
-          Coin {stage?.score.coin} / {stage?.config.coin}
-        </div>
-      </div>
+      {stage && <RebirthScore className="score" stage={stage} />}
 
       <div className="menu" onClick={() => setMode(Mode.Menu)}>
         Menu

@@ -6,7 +6,7 @@
   height: 280px;
 
   .title {
-    font-size: 30px;
+    font-size: 38px;
     color: #f20;
   }
 
@@ -16,7 +16,6 @@
 
   .score {
     margin-top: 20px;
-    color: white;
   }
 
   .menu {
