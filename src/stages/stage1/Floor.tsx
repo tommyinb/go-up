@@ -49,6 +49,7 @@ export function Floor({ index, width, depth, children }: Props) {
         <meshStandardMaterial
           map={texture}
           transparent={true}
+          roughness={1}
           opacity={visiting ? 1 : 0.6}
           side={DoubleSide}
         />
