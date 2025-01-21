@@ -5,6 +5,7 @@ import { CameraShakeSize } from "../../scenes/cameraShakeSize";
 import { useShakeCamera } from "../../scenes/useShakeCamera";
 import { ButtonBox } from "./ButtonBox";
 import { useGetPressers } from "./useGetPressers";
+import { usePressingButtonSound } from "./usePressingButtonSound";
 
 export function CountButton({
   position,
@@ -38,6 +39,8 @@ export function CountButton({
       shakeCamera();
     }
   }, [pressedCount, shakeCamera, targetCount]);
+
+  usePressingButtonSound(pressing && pressedCount <= targetCount);
 
   const completed = pressedCount >= targetCount;
   useEffect(() => {

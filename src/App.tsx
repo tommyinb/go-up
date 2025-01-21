@@ -1,4 +1,6 @@
 import "./App.css";
+import { Audio } from "./audios/Audio";
+import { AudioProvider } from "./audios/AudioProvider";
 import { DebugProvider } from "./debugs/DebugProvider";
 import { Failure } from "./forms/Failure";
 import { Rebirth } from "./forms/Rebirth";
@@ -21,19 +23,23 @@ function App() {
           <MenuProvider>
             <SceneProvider>
               <GameProvider>
-                <Scene>
-                  <Game />
-                </Scene>
+                <AudioProvider>
+                  <Audio />
 
-                <Menu />
+                  <Scene>
+                    <Game />
+                  </Scene>
 
-                <Header />
+                  <Menu />
 
-                <Rebirth />
-                <Failure />
-                <Success />
+                  <Header />
 
-                <Save />
+                  <Rebirth />
+                  <Failure />
+                  <Success />
+
+                  <Save />
+                </AudioProvider>
               </GameProvider>
             </SceneProvider>
           </MenuProvider>

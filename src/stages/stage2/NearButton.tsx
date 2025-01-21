@@ -5,6 +5,7 @@ import { CameraShakeSize } from "../../scenes/cameraShakeSize";
 import { useShakeCamera } from "../../scenes/useShakeCamera";
 import { ButtonBox } from "../stage1/ButtonBox";
 import { usePressed } from "../stage1/usePressed";
+import { usePressedButtonSound } from "../stage1/usePressedButtonSound";
 import { useNear } from "./useNear";
 
 export function NearButton({ position, onPress }: Props) {
@@ -22,6 +23,8 @@ export function NearButton({ position, onPress }: Props) {
   }, [onPress, pressed, shakeCamera]);
 
   const near = useNear(ref, size * 3, size * 3, !pressed);
+
+  usePressedButtonSound(pressed);
 
   return (
     <ButtonBox

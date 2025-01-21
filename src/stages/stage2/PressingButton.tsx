@@ -5,6 +5,7 @@ import { CameraShakeSize } from "../../scenes/cameraShakeSize";
 import { useShakeCamera } from "../../scenes/useShakeCamera";
 import { ButtonBox } from "../stage1/ButtonBox";
 import { useGetPressers } from "../stage1/useGetPressers";
+import { usePressingButtonSound } from "../stage1/usePressingButtonSound";
 
 export function PressingButton({
   position,
@@ -26,6 +27,8 @@ export function PressingButton({
       shakeCamera();
     }
   }, [pressing, shakeCamera]);
+
+  usePressingButtonSound(pressing);
 
   return (
     <ButtonBox

@@ -5,6 +5,7 @@ import { CameraShakeSize } from "../../scenes/cameraShakeSize";
 import { useShakeCamera } from "../../scenes/useShakeCamera";
 import { ButtonBox } from "./ButtonBox";
 import { usePressed } from "./usePressed";
+import { usePressedButtonSound } from "./usePressedButtonSound";
 
 export function PressedButton({ position, onPress }: Props) {
   const ref = useRef<Group>(null);
@@ -19,6 +20,8 @@ export function PressedButton({ position, onPress }: Props) {
       shakeCamera();
     }
   }, [onPress, pressed, shakeCamera]);
+
+  usePressedButtonSound(pressed);
 
   return (
     <ButtonBox
