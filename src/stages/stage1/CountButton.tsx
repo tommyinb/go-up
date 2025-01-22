@@ -13,6 +13,7 @@ export function CountButton({
   onComplete,
 }: Props) {
   const [pressing, setPressing] = useState(false);
+  const [pressCount, setPressCount] = useState(0);
 
   const buttonRef = useRef<Group>(null);
   const size = 1.1;
@@ -24,25 +25,23 @@ export function CountButton({
 
     for (const presser of currentPressers) {
       if (!pressersRef.current.has(presser)) {
-        setPressedDown((down) => down + 1);
+        setPressCount((down) => down + 1);
       }
     }
 
     pressersRef.current = new Set(currentPressers);
   });
 
-  const [pressedCount, setPressedDown] = useState(0);
-
   const shakeCamera = useShakeCamera(CameraShakeSize.Small);
+  const soundPress = usePressingButtonSound();
   useEffect(() => {
-    if (pressedCount > 0 && pressedCount <= targetCount) {
+    if (pressCount > 0 && pressCount <= targetCount) {
       shakeCamera();
+      soundPress(pressCount);
     }
-  }, [pressedCount, shakeCamera, targetCount]);
+  }, [pressCount, shakeCamera, soundPress, targetCount]);
 
-  usePressingButtonSound(pressing && pressedCount <= targetCount);
-
-  const completed = pressedCount >= targetCount;
+  const completed = pressCount >= targetCount;
   useEffect(() => {
     if (completed) {
       onComplete();
@@ -55,9 +54,9 @@ export function CountButton({
       width={size}
       depth={size}
       position={position}
-      color={pressedCount >= targetCount ? "#eee" : pressing ? "#c44" : "#c00"}
+      color={pressCount >= targetCount ? "#eee" : pressing ? "#c44" : "#c00"}
       visible={true}
-      pressed={pressing || pressedCount >= targetCount}
+      pressed={pressing || pressCount >= targetCount}
     />
   );
 }

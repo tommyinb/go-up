@@ -13,15 +13,15 @@ export function PressedButton({ position, onPress }: Props) {
   const pressed = usePressed(ref, size, size);
 
   const shakeCamera = useShakeCamera(CameraShakeSize.Small);
+  const soundPress = usePressedButtonSound();
   useEffect(() => {
     if (pressed) {
       onPress();
 
       shakeCamera();
+      soundPress();
     }
-  }, [onPress, pressed, shakeCamera]);
-
-  usePressedButtonSound(pressed);
+  }, [onPress, pressed, shakeCamera, soundPress]);
 
   return (
     <ButtonBox

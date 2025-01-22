@@ -24,8 +24,6 @@ function App() {
             <SceneProvider>
               <GameProvider>
                 <AudioProvider>
-                  <Audio />
-
                   <Scene>
                     <Game />
                   </Scene>
@@ -37,6 +35,8 @@ function App() {
                   <Rebirth />
                   <Failure />
                   <Success />
+
+                  <Audio />
 
                   <Save />
                 </AudioProvider>

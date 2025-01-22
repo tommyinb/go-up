@@ -8,10 +8,14 @@ import "./Timer.css";
 export function Timer() {
   const { mode } = useContext(MenuContext);
 
-  const { round, setRound } = useContext(GameContext);
+  const { round, setRound, player } = useContext(GameContext);
 
   useEffect(() => {
     if (mode !== Mode.Game) {
+      return;
+    }
+
+    if (round.index <= 0 && player.inputs.length <= 0) {
       return;
     }
 
@@ -38,7 +42,7 @@ export function Timer() {
     }, 10);
 
     return () => clearInterval(timer);
-  }, [mode, round.index, setRound]);
+  }, [mode, player.inputs.length, round.index, setRound]);
 
   const { debug, setDebug } = useContext(DebugContext);
 

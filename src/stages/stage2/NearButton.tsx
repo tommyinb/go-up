@@ -14,17 +14,17 @@ export function NearButton({ position, onPress }: Props) {
   const pressed = usePressed(ref, size, size);
 
   const shakeCamera = useShakeCamera(CameraShakeSize.Small);
+  const soundPress = usePressedButtonSound();
   useEffect(() => {
     if (pressed) {
       onPress();
 
       shakeCamera();
+      soundPress();
     }
-  }, [onPress, pressed, shakeCamera]);
+  }, [onPress, pressed, shakeCamera, soundPress]);
 
   const near = useNear(ref, size * 3, size * 3, !pressed);
-
-  usePressedButtonSound(pressed);
 
   return (
     <ButtonBox

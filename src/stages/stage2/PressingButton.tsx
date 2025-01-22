@@ -28,7 +28,13 @@ export function PressingButton({
     }
   }, [pressing, shakeCamera]);
 
-  usePressingButtonSound(pressing);
+  const soundPress = usePressingButtonSound();
+  const soundCount = useRef(0);
+  useEffect(() => {
+    if (pressing) {
+      soundPress(++soundCount.current);
+    }
+  }, [pressing, soundPress]);
 
   return (
     <ButtonBox
