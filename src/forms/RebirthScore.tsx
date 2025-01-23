@@ -5,11 +5,11 @@ export function RebirthScore({ className, stage }: Props) {
   return (
     <div className={`forms-RebirthScore ${className}`}>
       <div className="level">
-        <div className="label">Level</div>
-        <div className="value">
+        <div>Level</div>
+        <div>
           {stage.score.level + 1} / {stage.config.level}
         </div>
-        <div className="rating">
+        <div>
           {stage.score.level >= stage.config.level * 0.5 ? "★" : "☆"}
           {stage.score.level >= stage.config.level * 0.8 ? "★" : "☆"}
           {stage.score.level >= stage.config.level ? "★" : "☆"}
@@ -17,11 +17,11 @@ export function RebirthScore({ className, stage }: Props) {
       </div>
 
       <div className="coin">
-        <div className="label">Coin</div>
-        <div className="value">
+        <div>Coin</div>
+        <div>
           {stage.score.coin} / {stage.config.coin}
         </div>
-        <div className="rating">
+        <div>
           {stage.score.coin >= stage.config.coin * 0.3 ? "★" : "☆"}
           {stage.score.coin >= stage.config.coin * 0.7 ? "★" : "☆"}
           {stage.score.coin >= stage.config.coin ? "★" : "☆"}

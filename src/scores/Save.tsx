@@ -45,7 +45,10 @@ export function Save() {
               (oldScore.score.prize === stage.score.prize &&
                 (oldScore.score.level > stage.score.level ||
                   (oldScore.score.level === stage.score.level &&
-                    oldScore.score.coin >= stage.score.coin))))
+                    (oldScore.score.coin > stage.score.coin ||
+                      (oldScore.score.coin === stage.score.coin &&
+                        (oldScore.score.time ?? Number.MAX_VALUE) <
+                          (stage.score.time ?? Number.MAX_VALUE)))))))
           ) {
             return oldScores;
           }

@@ -70,6 +70,7 @@ export function Rebirth() {
             level: 0,
             coin: 0,
             prize: 0,
+            time: undefined,
           });
         }}
       >

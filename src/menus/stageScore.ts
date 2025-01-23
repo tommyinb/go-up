@@ -1,7 +1,9 @@
 export interface StageScore {
-  prize: number;
-
   level: number;
 
   coin: number;
+
+  prize: number;
+
+  time: number | undefined;
 }

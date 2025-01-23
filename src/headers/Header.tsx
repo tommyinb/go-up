@@ -3,8 +3,9 @@ import { useStage } from "../forms/useStage";
 import { GameContext } from "../games/GameContext";
 import { MenuContext } from "../menus/MenuContext";
 import { Mode } from "../menus/mode";
+import { DownTimer } from "./DownTimer";
 import "./Header.css";
-import { Timer } from "./Timer";
+import { SuccessTime } from "./SuccessTime";
 
 export function Header() {
   const { mode, setMode } = useContext(MenuContext);
@@ -23,7 +24,9 @@ export function Header() {
         {stage?.config.name}
       </div>
 
-      <Timer />
+      <DownTimer />
+
+      <SuccessTime />
     </div>
   );
 }

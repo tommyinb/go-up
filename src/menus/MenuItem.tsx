@@ -75,7 +75,10 @@ export function MenuItem({ index }: Props) {
         setStages((stages) =>
           stages.map((stage) =>
             stage.index === index
-              ? { ...stage, score: { prize: 0, level: 0, coin: 0 } }
+              ? {
+                  ...stage,
+                  score: { prize: 0, level: 0, coin: 0, time: undefined },
+                }
               : stage
           )
         );

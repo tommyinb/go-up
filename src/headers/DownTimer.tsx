@@ -3,9 +3,9 @@ import { DebugContext } from "../debugs/DebugContext";
 import { GameContext } from "../games/GameContext";
 import { MenuContext } from "../menus/MenuContext";
 import { Mode } from "../menus/mode";
-import "./Timer.css";
+import "./DownTimer.css";
 
-export function Timer() {
+export function DownTimer() {
   const { mode } = useContext(MenuContext);
 
   const { round, setRound, player } = useContext(GameContext);
@@ -32,11 +32,16 @@ export function Timer() {
     const timer = setInterval(() => {
       setRound((round) => {
         const currentTime = performance.now();
-        const elapsed = currentTime - from.clockTime;
+        const elapsedTime = currentTime - from.clockTime;
+
+        const outputTime = Math.max(from.roundValue - elapsedTime / 1000, 0);
+        if (outputTime === round.time) {
+          return round;
+        }
 
         return {
           ...round,
-          time: Math.max(from.roundValue - elapsed / 1000, 0),
+          time: outputTime,
         };
       });
     }, 10);
@@ -47,7 +52,7 @@ export function Timer() {
   const { debug, setDebug } = useContext(DebugContext);
 
   return (
-    <div className="headers-Timer" onDoubleClick={() => setDebug(!debug)}>
+    <div className="headers-DownTimer" onDoubleClick={() => setDebug(!debug)}>
       {round.time.toFixed(2)}
     </div>
   );

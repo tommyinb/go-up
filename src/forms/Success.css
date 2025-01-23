@@ -10,6 +10,11 @@
     color: #f20;
   }
 
+  .time {
+    font-size: 18px;
+    color: #28f;
+  }
+
   .round {
     color: #888;
   }

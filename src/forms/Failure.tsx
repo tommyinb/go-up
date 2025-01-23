@@ -61,6 +61,7 @@ export function Failure() {
             level: 0,
             coin: 0,
             prize: 0,
+            time: undefined,
           });
         }}
       >

@@ -26,6 +26,8 @@ export function Success() {
     >
       <div className="title">Congrats!</div>
 
+      <div className="time">Total Time {stage?.score.time?.toFixed(2)}s</div>
+
       <div className="round">
         Round {round.index + 1} / {stage?.config.round}
       </div>
