@@ -5,7 +5,7 @@ import { CameraShakeSize } from "../../scenes/cameraShakeSize";
 import { useShakeCamera } from "../../scenes/useShakeCamera";
 import { ButtonBox } from "../stage1/ButtonBox";
 import { useGetPressers } from "../stage1/useGetPressers";
-import { usePressingButtonSound } from "../stage1/usePressingButtonSound";
+import { useSoundPressing } from "../stage1/useSoundPressing";
 
 export function PressingButton({
   position,
@@ -28,7 +28,7 @@ export function PressingButton({
     }
   }, [pressing, shakeCamera]);
 
-  const soundPress = usePressingButtonSound();
+  const soundPress = useSoundPressing();
   const soundCount = useRef(0);
   useEffect(() => {
     if (pressing) {

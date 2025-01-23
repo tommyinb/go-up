@@ -2,7 +2,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import { Euler, InstancedMesh, Object3D, Vector3 } from "three";
 
-export function PrizeConfettiRing({
+export function ConfettiRing({
   count,
   ringWidth,
   ringHeight,

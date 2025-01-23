@@ -1,11 +1,12 @@
 import { Vector3 } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { Group } from "three";
+import { useSound } from "../../audios/useSound";
 import { CameraShakeSize } from "../../scenes/cameraShakeSize";
 import { useShakeCamera } from "../../scenes/useShakeCamera";
+import buttonSound from "../stage1/button.mp3";
 import { ButtonBox } from "../stage1/ButtonBox";
 import { usePressed } from "../stage1/usePressed";
-import { usePressedButtonSound } from "../stage1/usePressedButtonSound";
 import { useNear } from "./useNear";
 
 export function NearButton({ position, onPress }: Props) {
@@ -14,7 +15,7 @@ export function NearButton({ position, onPress }: Props) {
   const pressed = usePressed(ref, size, size);
 
   const shakeCamera = useShakeCamera(CameraShakeSize.Small);
-  const soundPress = usePressedButtonSound();
+  const soundPress = useSound(buttonSound);
   useEffect(() => {
     if (pressed) {
       onPress();

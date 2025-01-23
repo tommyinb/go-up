@@ -21,7 +21,7 @@ export function CoinBox({ boxRef, position, pressed }: Props) {
           </group>
 
           <mesh position={[0, 0.15, 0]} visible={debug}>
-            <boxGeometry args={[0.3, 0.3, 0.3]} />
+            <boxGeometry args={[0.8, 0.8, 0.8]} />
 
             <meshStandardMaterial color="#cc0" wireframe={true} />
           </mesh>

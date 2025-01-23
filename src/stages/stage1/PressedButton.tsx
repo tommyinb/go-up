@@ -1,11 +1,12 @@
 import { Vector3 } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { Group } from "three";
+import { useSound } from "../../audios/useSound";
 import { CameraShakeSize } from "../../scenes/cameraShakeSize";
 import { useShakeCamera } from "../../scenes/useShakeCamera";
+import buttonSound from "./button.mp3";
 import { ButtonBox } from "./ButtonBox";
 import { usePressed } from "./usePressed";
-import { usePressedButtonSound } from "./usePressedButtonSound";
 
 export function PressedButton({ position, onPress }: Props) {
   const ref = useRef<Group>(null);
@@ -13,7 +14,7 @@ export function PressedButton({ position, onPress }: Props) {
   const pressed = usePressed(ref, size, size);
 
   const shakeCamera = useShakeCamera(CameraShakeSize.Small);
-  const soundPress = usePressedButtonSound();
+  const soundPress = useSound(buttonSound);
   useEffect(() => {
     if (pressed) {
       onPress();

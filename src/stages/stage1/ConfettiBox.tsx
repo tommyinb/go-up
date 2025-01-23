@@ -2,7 +2,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import { Euler, InstancedMesh, Object3D, Vector3, Vector3Tuple } from "three";
 
-export function PrizeConfettiBox({ count, boxSize, maxVelocity }: Props) {
+export function ConfettiBox({ count, boxSize, maxVelocity }: Props) {
   const ref = useRef<InstancedMesh>(null);
 
   const { clock } = useThree();

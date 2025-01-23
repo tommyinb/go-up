@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useSound } from "../../audios/useSound";
 import buttonSound from "../stage1/button.mp3";
 
-export function usePressingButtonSound() {
+export function useSoundPressing() {
   const sound1 = useSound(buttonSound);
   const sound2 = useSound(buttonSound);
   const sound3 = useSound(buttonSound);

@@ -1,21 +1,13 @@
 import { useContext, useEffect, useState } from "react";
+import { useStage } from "../forms/useStage";
 import { GameContext } from "../games/GameContext";
 import { AudioContext } from "./AudioContext";
-import musicFile from "./music.mp3";
+import backgroundMusic from "./background-music.mp3";
+import successMusic from "./success-music.mp3";
 import { useTrack } from "./useTrack";
 
 export function Music() {
-  const track = useTrack(musicFile);
-
   const [playing, setPlaying] = useState(false);
-  const { disabled } = useContext(AudioContext);
-  useEffect(() => {
-    if (playing && !disabled) {
-      track.current?.play();
-    } else {
-      track.current?.pause();
-    }
-  }, [disabled, playing, track]);
 
   const { player } = useContext(GameContext);
   useEffect(() => {
@@ -23,6 +15,34 @@ export function Music() {
       setPlaying(true);
     }
   }, [player.inputs.length]);
+
+  const { disabled } = useContext(AudioContext);
+
+  const stage = useStage();
+
+  const backgroundTrack = useTrack(backgroundMusic);
+  const successTrack = useTrack(successMusic);
+  useEffect(() => {
+    if (!(backgroundTrack.current && successTrack.current)) {
+      return;
+    }
+
+    if (!(playing && !disabled && stage)) {
+      backgroundTrack.current.pause();
+      return;
+    }
+
+    if (stage.score.prize >= stage.config.prize) {
+      successTrack.current.play();
+
+      backgroundTrack.current.pause();
+    } else {
+      backgroundTrack.current.loop = true;
+      backgroundTrack.current.play();
+
+      successTrack.current.pause();
+    }
+  }, [disabled, playing, backgroundTrack, stage, successTrack]);
 
   return <></>;
 }
