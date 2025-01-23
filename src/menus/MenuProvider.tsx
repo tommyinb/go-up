@@ -20,7 +20,7 @@ export function MenuProvider({ children }: PropsWithChildren) {
     configs.map((config, index) => ({
       index,
       config,
-      score: { prize: 0, level: 0, coin: 0 },
+      score: { prize: 0, level: 0, coin: 0, time: undefined },
     }))
   );
 

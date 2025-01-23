@@ -5,7 +5,7 @@ import { Track } from "./track";
 const lastIndex = { value: 0 };
 
 export function useTrack(url: string) {
-  const index = useMemo(() => ++lastIndex.value, []);
+  const index = useMemo(() => ++lastIndex.value + (url + "").length * 0, [url]);
 
   const ref = useRef<HTMLAudioElement>(null);
 
