@@ -1,6 +1,7 @@
 import "./App.css";
 import { Audio } from "./audios/Audio";
 import { AudioProvider } from "./audios/AudioProvider";
+import { Credit } from "./credits/Credit";
 import { DebugProvider } from "./debugs/DebugProvider";
 import { Failure } from "./forms/Failure";
 import { Rebirth } from "./forms/Rebirth";
@@ -27,6 +28,8 @@ function App() {
                   <Scene>
                     <Game />
                   </Scene>
+
+                  <Credit />
 
                   <Menu />
 
