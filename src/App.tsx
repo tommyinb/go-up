@@ -15,6 +15,7 @@ import { Scene } from "./scenes/Scene";
 import { SceneProvider } from "./scenes/SceneProvider";
 import { Save } from "./scores/Save";
 import { ScoreProvider } from "./scores/ScoreProvider";
+import { ServerProvider } from "./servers/ServerProvider";
 
 function App() {
   return (
@@ -25,23 +26,25 @@ function App() {
             <SceneProvider>
               <GameProvider>
                 <AudioProvider>
-                  <Scene>
-                    <Game />
-                  </Scene>
+                  <ServerProvider>
+                    <Scene>
+                      <Game />
+                    </Scene>
 
-                  <Credit />
+                    <Credit />
 
-                  <Menu />
+                    <Menu />
 
-                  <Header />
+                    <Header />
 
-                  <Rebirth />
-                  <Failure />
-                  <Success />
+                    <Rebirth />
+                    <Failure />
+                    <Success />
 
-                  <Audio />
+                    <Audio />
 
-                  <Save />
+                    <Save />
+                  </ServerProvider>
                 </AudioProvider>
               </GameProvider>
             </SceneProvider>

@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { Vector3 } from "three";
+import { DebugContext } from "../debugs/DebugContext";
 import { GameContext } from "../games/GameContext";
 import { MenuContext } from "../menus/MenuContext";
 import { Mode } from "../menus/mode";
 import { SceneContext } from "../scenes/SceneContext";
 import "./Failure.css";
+import { FailureReport } from "./FailureReport";
 import { Form } from "./Form";
 import { RebirthScore } from "./RebirthScore";
 import { useSetScore } from "./useSetScore";
@@ -17,21 +19,22 @@ export function Failure() {
 
   const stage = useStage();
 
+  const { debug } = useContext(DebugContext);
+
+  const active =
+    debug ||
+    (!!stage &&
+      mode === Mode.Game &&
+      round.time <= 0 &&
+      round.index >= stage.config.round - 1 &&
+      stage.score.prize < stage.config.prize);
+
   const { setCameraTarget } = useContext(SceneContext);
 
   const setScore = useSetScore();
 
   return (
-    <Form
-      className="forms-Failure"
-      active={
-        !!stage &&
-        mode === Mode.Game &&
-        round.time <= 0 &&
-        round.index >= stage.config.round - 1 &&
-        stage.score.prize < stage.config.prize
-      }
-    >
+    <Form className="forms-Failure" active={active}>
       <div className="title">Game Over</div>
 
       <div className="round">
@@ -39,6 +42,8 @@ export function Failure() {
       </div>
 
       {stage && <RebirthScore className="score" stage={stage} />}
+
+      <FailureReport />
 
       <div
         className="retry"
