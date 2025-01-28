@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { Vector3 } from "three";
-import { DebugContext } from "../debugs/DebugContext";
 import { GameContext } from "../games/GameContext";
 import { MenuContext } from "../menus/MenuContext";
 import { Mode } from "../menus/mode";
@@ -19,15 +18,12 @@ export function Failure() {
 
   const stage = useStage();
 
-  const { debug } = useContext(DebugContext);
-
   const active =
-    debug ||
-    (!!stage &&
-      mode === Mode.Game &&
-      round.time <= 0 &&
-      round.index >= stage.config.round - 1 &&
-      stage.score.prize < stage.config.prize);
+    !!stage &&
+    mode === Mode.Game &&
+    round.time <= 0 &&
+    round.index >= stage.config.round - 1 &&
+    stage.score.prize < stage.config.prize;
 
   const { setCameraTarget } = useContext(SceneContext);
 
@@ -43,7 +39,7 @@ export function Failure() {
 
       {stage && <RebirthScore className="score" stage={stage} />}
 
-      <FailureReport />
+      {active && <FailureReport />}
 
       <div
         className="retry"

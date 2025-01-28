@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useReport } from "../servers/useReport";
+import "./FailureReport.css";
 import { getSubmitScore } from "./getSubmitScore";
 import { useStage } from "./useStage";
 
@@ -23,7 +24,17 @@ export function FailureReport() {
 
   return (
     <div className="forms-FailureReport">
-      {score} ({percentage}%)
+      {percentage >= 99
+        ? "Elite 1%, worldwide"
+        : percentage >= 90
+        ? `Top ${Math.ceil(100 - percentage)}% worldwide`
+        : percentage >= 80
+        ? `Above ${Math.ceil(percentage)}% worldwide`
+        : percentage >= 30
+        ? `Ranked ${Math.ceil(percentage)}% worldwide`
+        : percentage >= 10
+        ? `Lower ${Math.ceil(percentage)}% worldwide`
+        : ""}
     </div>
   );
 }
