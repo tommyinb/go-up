@@ -29,15 +29,15 @@ export function Rebirth() {
         !!stage &&
         mode === Mode.Game &&
         round.time <= 0 &&
-        round.index < stage.config.round - 1 &&
-        stage.score.prize < stage.config.prize
+        stage.score.prize < stage.config.prize &&
+        round.index < stage.config.round - 1
       }
     >
       <div className="round">
         Round {round.index + 1} / {stage?.config.round}
       </div>
 
-      {stage && <RebirthScore className="score" stage={stage} />}
+      {stage && <RebirthScore stage={stage} />}
 
       <div
         className="again"

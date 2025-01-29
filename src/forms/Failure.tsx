@@ -5,7 +5,7 @@ import { MenuContext } from "../menus/MenuContext";
 import { Mode } from "../menus/mode";
 import { SceneContext } from "../scenes/SceneContext";
 import "./Failure.css";
-import { FailureReport } from "./FailureReport";
+import { FailureServer } from "./FailureServer";
 import { Form } from "./Form";
 import { RebirthScore } from "./RebirthScore";
 import { useSetScore } from "./useSetScore";
@@ -22,8 +22,8 @@ export function Failure() {
     !!stage &&
     mode === Mode.Game &&
     round.time <= 0 &&
-    round.index >= stage.config.round - 1 &&
-    stage.score.prize < stage.config.prize;
+    stage.score.prize < stage.config.prize &&
+    round.index >= stage.config.round - 1;
 
   const { setCameraTarget } = useContext(SceneContext);
 
@@ -37,9 +37,13 @@ export function Failure() {
         Round {round.index + 1} / {stage?.config.round}
       </div>
 
-      {stage && <RebirthScore className="score" stage={stage} />}
+      {stage && (
+        <>
+          <RebirthScore className="score" stage={stage} />
 
-      {active && <FailureReport />}
+          {active && <FailureServer stage={stage} />}
+        </>
+      )}
 
       <div
         className="retry"

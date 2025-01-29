@@ -10,9 +10,9 @@ export function RebirthScore({ className, stage }: Props) {
           {stage.score.level + 1} / {stage.config.level}
         </div>
         <div>
-          {stage.score.level >= stage.config.level * 0.5 ? "★" : "☆"}
-          {stage.score.level >= stage.config.level * 0.8 ? "★" : "☆"}
-          {stage.score.level >= stage.config.level ? "★" : "☆"}
+          {stage.score.level + 1 >= stage.config.level * 0.5 ? "★" : "☆"}
+          {stage.score.level + 1 >= stage.config.level * 0.8 ? "★" : "☆"}
+          {stage.score.level + 1 >= stage.config.level ? "★" : "☆"}
         </div>
       </div>
 

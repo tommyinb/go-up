@@ -1,14 +1,15 @@
 import { useMemo } from "react";
+import { Stage } from "../menus/stage";
 import { useReport } from "../servers/useReport";
-import "./FailureReport.css";
+import { useSubmit } from "../servers/useSubmit";
+import "./FailureServer.css";
 import { getSubmitScore } from "./getSubmitScore";
-import { useStage } from "./useStage";
 
-export function FailureReport() {
-  const stage = useStage();
-  const score = useMemo(() => (stage ? getSubmitScore(stage) : 0), [stage]);
+export function FailureServer({ stage }: Props) {
+  const score = useMemo(() => getSubmitScore(stage), [stage]);
+  useSubmit(stage.config.id, score);
 
-  const report = useReport(stage?.config.id);
+  const report = useReport(stage.config.id);
   const percentage = useMemo(
     () =>
       Math.max(
@@ -22,8 +23,10 @@ export function FailureReport() {
     [report?.distribution, score]
   );
 
+  console.log(stage.config.id, report);
+
   return (
-    <div className="forms-FailureReport">
+    <div className="forms-FailureServer">
       {percentage >= 99
         ? "Elite 1%, worldwide"
         : percentage >= 90
@@ -37,4 +40,8 @@ export function FailureReport() {
         : ""}
     </div>
   );
+}
+
+interface Props {
+  stage: Stage;
 }

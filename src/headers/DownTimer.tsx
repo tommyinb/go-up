@@ -10,6 +10,8 @@ export function DownTimer() {
 
   const { round, setRound, player } = useContext(GameContext);
 
+  const { debug, setDebug } = useContext(DebugContext);
+
   useEffect(() => {
     if (mode !== Mode.Game) {
       return;
@@ -34,7 +36,10 @@ export function DownTimer() {
         const currentTime = performance.now();
         const elapsedTime = currentTime - from.clockTime;
 
-        const outputTime = Math.max(from.roundValue - elapsedTime / 1000, 0);
+        const outputTime = Math.max(
+          from.roundValue - (elapsedTime / 1000) * (debug ? 10 : 1),
+          0
+        );
         if (outputTime === round.time) {
           return round;
         }
@@ -47,9 +52,7 @@ export function DownTimer() {
     }, 10);
 
     return () => clearInterval(timer);
-  }, [mode, player.inputs.length, round.index, setRound]);
-
-  const { debug, setDebug } = useContext(DebugContext);
+  }, [debug, mode, player.inputs.length, round.index, setRound]);
 
   return (
     <div className="headers-DownTimer" onDoubleClick={() => setDebug(!debug)}>

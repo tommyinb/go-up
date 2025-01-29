@@ -7,12 +7,9 @@
   user-select: none;
 
   .round {
+    margin-bottom: 20px;
     font-size: 25px;
     color: white;
-  }
-
-  .score {
-    margin-top: 20px;
   }
 
   .again {

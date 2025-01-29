@@ -4,21 +4,17 @@ import { firebase } from "./firebase";
 import { Report } from "./report";
 import { ServerContext } from "./ServerContext";
 
-export function useReport(stageId: string | undefined) {
+export function useReport(stageId: string) {
   const [report, setReport] = useState<Report>();
 
   const { reports, setReports } = useContext(ServerContext);
 
   useEffect(() => {
-    if (!stageId) {
-      return;
-    }
-
     if (report) {
       return;
     }
 
-    const oldReport = reports.find((report) => report.stageId);
+    const oldReport = reports.find((report) => report.stageId === stageId);
     if (oldReport) {
       const oldElapsed = Date.now() - oldReport.time;
       if (oldElapsed <= 3 * 24 * 60 * 60 * 1000) {
@@ -31,7 +27,7 @@ export function useReport(stageId: string | undefined) {
 
     (async () => {
       const firestore = getFirestore(firebase);
-      const reportRef = doc(firestore, `reports/${stageId}`);
+      const reportRef = doc(firestore, `reports/${stageId}-output`);
       const reportSnapshot = await getDoc(reportRef);
 
       if (token.cancelled) {
@@ -49,6 +45,8 @@ export function useReport(stageId: string | undefined) {
         distribution: Object.entries(reportData.distribution).map(
           ([key, score]) => ({ percentage: parseFloat(key), score })
         ),
+        successes: reportData.successes,
+        failures: reportData.failures,
         time: reportData.time.seconds * 1000,
       };
 
@@ -65,7 +63,7 @@ export function useReport(stageId: string | undefined) {
       return;
     }
 
-    const oldReport = reports.find((report) => report.stageId);
+    const oldReport = reports.find((report) => report.stageId === stageId);
     if (oldReport) {
       if (oldReport.time >= report.time) {
         return;
@@ -77,12 +75,14 @@ export function useReport(stageId: string | undefined) {
     } else {
       setReports([...reports, report]);
     }
-  }, [report, reports, setReports]);
+  }, [report, reports, setReports, stageId]);
 
   return report;
 }
 
 interface ServerReport {
   distribution: { [percentage: number]: number };
+  successes: number;
+  failures: number;
   time: { seconds: number };
 }

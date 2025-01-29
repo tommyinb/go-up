@@ -6,5 +6,8 @@ export interface Report {
     score: number;
   }[];
 
+  successes: number;
+  failures: number;
+
   time: number;
 }
