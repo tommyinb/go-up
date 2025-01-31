@@ -1,0 +1,6 @@
+.forms-SuccessServer {
+  > .message {
+    font-size: 14px;
+    color: #28f;
+  }
+}

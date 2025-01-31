@@ -1,4 +1,4 @@
-import { Sphere } from "@react-three/drei";
+import { Sphere, Text } from "@react-three/drei";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Group, Vector3 } from "three";
 import { DebugContext } from "../debugs/DebugContext";
@@ -39,8 +39,14 @@ export function Computer({ id }: Props) {
         <mesh position={[0, 0.5, 0]} visible={debug}>
           <boxGeometry args={[1, 1, 1]} />
 
-          <meshStandardMaterial color="#444" wireframe={true} />
+          <meshStandardMaterial color="#888" wireframe={true} />
         </mesh>
+
+        {debug && (
+          <Text color="#888" position={[0, 1.5, 0]}>
+            {id}
+          </Text>
+        )}
       </group>
     </>
   );

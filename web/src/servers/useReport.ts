@@ -70,7 +70,9 @@ export function useReport(stageId: string) {
       }
 
       setReports(
-        reports.map((oldReport) => (oldReport.stageId ? report : oldReport))
+        reports.map((oldReport) =>
+          oldReport.stageId === report.stageId ? report : oldReport
+        )
       );
     } else {
       setReports([...reports, report]);
