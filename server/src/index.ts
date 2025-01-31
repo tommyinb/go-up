@@ -1,12 +1,16 @@
 import admin from "firebase-admin";
-import { download } from "./submits/download.js";
+import { generateReports } from "./reports/generateReports.js";
+import { downloadSubmits } from "./submits/downloadSubmits.js";
+import { countUsers } from "./users/countUsers.js";
 
-console.log("start");
+console.log("start", new Date());
 
 const credential = admin.credential.cert("./data/serviceAccountKey.json");
 const app = admin.initializeApp({ credential });
 const firestore = app.firestore();
 
-await download(firestore);
+await downloadSubmits(firestore);
+await generateReports(firestore);
+await countUsers();
 
-console.log("done");
+console.log("done", new Date());

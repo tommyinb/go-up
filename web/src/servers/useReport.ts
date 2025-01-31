@@ -27,7 +27,7 @@ export function useReport(stageId: string) {
 
     (async () => {
       const firestore = getFirestore(firebase);
-      const reportRef = doc(firestore, `reports/${stageId}-output`);
+      const reportRef = doc(firestore, `reports/${stageId}`);
       const reportSnapshot = await getDoc(reportRef);
 
       if (token.cancelled) {
