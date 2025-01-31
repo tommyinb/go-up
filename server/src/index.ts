@@ -1,16 +1,12 @@
-import { deleteApp } from "firebase/app";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
-import { firebase } from "./firebase.js";
+import admin from "firebase-admin";
+import { download } from "./submits/download.js";
 
-await (async () => {
-  const firestore = getFirestore(firebase);
-  const reportRef = doc(firestore, "reports/stage-1-1-output");
-  const reportSnapshot = await getDoc(reportRef);
-  const reportData = reportSnapshot.data();
+console.log("start");
 
-  console.log(reportData?.distribution);
+const credential = admin.credential.cert("./data/serviceAccountKey.json");
+const app = admin.initializeApp({ credential });
+const firestore = app.firestore();
 
-  deleteApp(firebase);
-})();
+await download(firestore);
 
-console.log("abc");
+console.log("done");
