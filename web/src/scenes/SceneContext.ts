@@ -11,6 +11,9 @@ export const SceneContext = createContext<{
   cameraTarget: Vector3;
   setCameraTarget: Dispatch<SetStateAction<Vector3>>;
 
+  cameraDistance: Vector3;
+  setCameraDistance: Dispatch<SetStateAction<Vector3>>;
+
   cameraShakes: CameraShake[];
   setCameraShakes: Dispatch<SetStateAction<CameraShake[]>>;
 
@@ -21,6 +24,9 @@ export const SceneContext = createContext<{
 }>({
   cameraTarget: new Vector3(),
   setCameraTarget: () => {},
+
+  cameraDistance: new Vector3(),
+  setCameraDistance: () => {},
 
   cameraShakes: [],
   setCameraShakes: () => {},

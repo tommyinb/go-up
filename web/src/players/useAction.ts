@@ -9,7 +9,7 @@ export function useAction(
   setTarget: (target: Vector3) => void,
   groupRef: RefObject<Group> | undefined
 ) {
-  const { setCameraTarget } = useContext(SceneContext);
+  const { setCameraTarget, setCameraDistance } = useContext(SceneContext);
 
   useEffect(() => {
     if (!input) {
@@ -25,11 +25,13 @@ export function useAction(
             ? target
             : new Vector3(target.x, input.target.y, target.z)
         );
+
+        setCameraDistance(new Vector3(3, 12, 8));
         break;
 
       case PlayerInputType.Smash:
         groupRef?.current?.position.setY(groupRef.current.position.y + 2);
         break;
     }
-  }, [groupRef, input, setCameraTarget, setTarget]);
+  }, [groupRef, input, setCameraDistance, setCameraTarget, setTarget]);
 }

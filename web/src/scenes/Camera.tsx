@@ -7,20 +7,20 @@ import { SceneContext } from "./SceneContext";
 export function Camera() {
   const ref = useRef<CameraControls>(null);
 
-  const { cameraTarget, cameraShakes, setCameraShakes } =
+  const { cameraTarget, cameraDistance, cameraShakes, setCameraShakes } =
     useContext(SceneContext);
 
   useEffect(() => {
     ref.current?.setLookAt(
-      cameraTarget.x + 3,
-      cameraTarget.y + 12,
-      cameraTarget.z + 8,
+      cameraTarget.x + cameraDistance.x,
+      cameraTarget.y + cameraDistance.y,
+      cameraTarget.z + cameraDistance.z,
       cameraTarget.x,
       cameraTarget.y,
       cameraTarget.z,
       true
     );
-  }, [cameraTarget.x, cameraTarget.y, cameraTarget.z]);
+  }, [cameraDistance, cameraTarget.x, cameraTarget.y, cameraTarget.z]);
 
   const shake = useMemo(() => {
     if (cameraShakes.length <= 0) {

@@ -5,6 +5,7 @@ import { CameraShake } from "./cameraShake";
 
 export function SceneProvider({ children }: PropsWithChildren) {
   const [cameraTarget, setCameraTarget] = useState(new Vector3());
+  const [cameraDistance, setCameraDistance] = useState(new Vector3(2, 4, 6));
 
   const [cameraShakes, setCameraShakes] = useState<CameraShake[]>([]);
 
@@ -17,6 +18,8 @@ export function SceneProvider({ children }: PropsWithChildren) {
       value={{
         cameraTarget,
         setCameraTarget,
+        cameraDistance,
+        setCameraDistance,
         cameraShakes,
         setCameraShakes,
         clickHandlers,
