@@ -1,9 +1,9 @@
 import { Stage } from "../menus/stage";
 import "./RebirthScore.css";
 
-export function RebirthScore({ className, stage }: Props) {
+export function RebirthScore({ stage }: Props) {
   return (
-    <div className={`forms-RebirthScore ${className ?? ""}`}>
+    <div className="forms-RebirthScore">
       <div className="level">
         <div>Level</div>
         <div>
@@ -32,6 +32,5 @@ export function RebirthScore({ className, stage }: Props) {
 }
 
 interface Props {
-  className?: string;
   stage: Stage;
 }

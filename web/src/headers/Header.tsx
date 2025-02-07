@@ -5,6 +5,7 @@ import { MenuContext } from "../menus/MenuContext";
 import { Mode } from "../menus/mode";
 import { DownTimer } from "./DownTimer";
 import "./Header.css";
+import { Heartbeat } from "./Heartbeat";
 import { SuccessTime } from "./SuccessTime";
 
 export function Header() {
@@ -25,6 +26,8 @@ export function Header() {
       </div>
 
       <DownTimer />
+
+      <Heartbeat />
 
       <SuccessTime />
     </div>

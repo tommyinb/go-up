@@ -1,4 +1,7 @@
 .forms-FailureServerReport {
   font-size: 14px;
-  color: #28f;
+
+  .empty {
+    opacity: 0;
+  }
 }

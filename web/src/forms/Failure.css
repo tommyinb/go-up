@@ -3,7 +3,7 @@
   left: calc(50% - 150px);
   top: calc(50% - 200px);
   width: 300px;
-  height: 310px;
+  height: 320px;
 
   .title {
     font-size: 30px;
@@ -16,7 +16,7 @@
 
   .score {
     margin-top: 20px;
-    margin-bottom: 1px;
+    margin-bottom: 3px;
   }
 
   .retry {

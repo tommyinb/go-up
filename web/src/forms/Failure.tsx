@@ -5,9 +5,9 @@ import { MenuContext } from "../menus/MenuContext";
 import { Mode } from "../menus/mode";
 import { SceneContext } from "../scenes/SceneContext";
 import "./Failure.css";
+import { FailureScore } from "./FailureScore";
 import { FailureServer } from "./FailureServer";
 import { Form } from "./Form";
-import { RebirthScore } from "./RebirthScore";
 import { useSetScore } from "./useSetScore";
 import { useStage } from "./useStage";
 
@@ -39,7 +39,7 @@ export function Failure() {
 
       {stage && (
         <>
-          <RebirthScore className="score" stage={stage} />
+          <FailureScore className="score" stage={stage} />
 
           {active && <FailureServer stage={stage} />}
         </>

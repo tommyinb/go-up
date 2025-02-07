@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { GameContext } from "../games/GameContext";
 import { MenuContext } from "../menus/MenuContext";
 import { Mode } from "../menus/mode";
+import { FailureScore } from "./FailureScore";
 import { Form } from "./Form";
-import { RebirthScore } from "./RebirthScore";
 import "./Success.css";
 import { SuccessServer } from "./SuccessServer";
 import { useStage } from "./useStage";
@@ -34,7 +34,7 @@ export function Success() {
             </div>
           )}
 
-          <RebirthScore stage={stage} />
+          <FailureScore stage={stage} />
 
           {active && <SuccessServer stage={stage} />}
         </>
