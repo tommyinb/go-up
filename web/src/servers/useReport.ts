@@ -42,9 +42,7 @@ export function useReport(stageId: string) {
 
       const newReport: Report = {
         stageId,
-        distribution: Object.entries(reportData.distribution).map(
-          ([key, score]) => ({ percentage: parseFloat(key), score })
-        ),
+        distribution: reportData.distribution,
         successes: reportData.successes,
         failures: reportData.failures,
         time: reportData.time.seconds * 1000,
@@ -82,9 +80,4 @@ export function useReport(stageId: string) {
   return report;
 }
 
-interface ServerReport {
-  distribution: { [percentage: number]: number };
-  successes: number;
-  failures: number;
-  time: { seconds: number };
-}
+type ServerReport = Omit<Report, "time"> & { time: { seconds: number } };
